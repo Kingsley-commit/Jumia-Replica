@@ -1,0 +1,305 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load ecommerce %}
+{% load extra_tags %}
+{% block header %}
+    <link rel="stylesheet" href="{% static 'product_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'loading.css' %}">
+{% endblock header %}
+
+{% block content %}
+
+<div class="go-back">
+    <a href="/">Go Home</a>
+</div>
+
+<div class="container">
+    <div class="product">
+        <div class="product-left-detail">
+            <div class="product-image">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            </div>
+        </div>
+        <div class="product-right-detail">
+            <div class="header">
+                <h1 class="title">{{ product.name }}</h1>
+                <span class="favourite">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="heart-icon-cont" x="0px" y="0px"
+                    data-productid="{{ product.id }}"
+                    width="30" height="30"
+                    viewBox="0 0 172 172"
+                    style=" fill:#000000;"><g transform="translate(4.73,4.73) scale(0.945,0.945)">
+                    <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="none" 
+                    stroke-linecap="butt" stroke-linejoin="none" stroke-miterlimit="10" 
+                    stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+                     font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                     <g fill="white" stroke="#f68b1e" stroke-width="10" stroke-linejoin="round">
+                    <path d="M121.83333,21.5c23.74675,0 43,19.25325 43,43c0,43.16125 -78.83333,86 -78.83333,86c0,0 -78.83333,-43.20425 -78.83333,-86c0,-23.74675 19.25325,-43 43,-43c14.964,0 28.13275,7.65758 35.83333,19.24967c7.697,-11.59208 20.86933,-19.24967 35.83333,-19.24967"></path></g><path d="M0,172v-172h172v172z" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path>
+                    <g id="heart-icon-favourite" class="{% if product.id in favourites_ids %} fill {% endif %}"  stroke="none" stroke-width="2" stroke-linejoin="miter"><path d="M121.83333,21.5c-14.964,0 -28.13633,7.65758 -35.83333,19.24967c-7.70058,-11.59208 -20.86933,-19.24967 -35.83333,-19.24967c-23.74675,0 -43,19.25325 -43,43c0,42.79575 78.83333,86 78.83333,86c0,0 78.83333,-42.83875 78.83333,-86c0,-23.74675 -19.25325,-43 -43,-43"></path></g><path d="" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path><path d="" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path></g></g></svg>
+                </span>
+            </div>
+            <div class="rating">
+                    {% with stars_count=product.product_rating.ratings|floatformat:0 %}
+                        {% for i in "x"|rjust:stars_count %}
+                        <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                        {% endfor %}
+                        {% endwith %}
+                        {% with remainder_stars_count=product.product_rating.ratings|floatformat:0|subtract:5 %}
+                        {% if remainder_stars_count != 0 %}
+                            {% for j in "y"|rjust:remainder_stars_count %}
+                            <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                <span class="rating-reviews">({{product.product_rating.reviews_count}} ratings)</span>
+            </div>
+            <div class="bottom-section">
+                {% if product.discount == 0 %}
+                    <div class="price">
+                        &#8358; {{product.price|floatformat:2}}
+                    </div>
+                {% else %}
+                    <div class="price">
+                        &#8358; {{product.price|discountprice:product.discount|floatformat:2}}
+                    </div>
+                    <div class="old-price">
+                        &#8358; {{product.price|floatformat:2}}
+                    </div>
+                {% endif %}
+
+                <div class="cta-container">
+                    <div class="lds-facebook"><div></div><div></div><div></div></div>
+                    <button class="update-cart-cta initial {% if in_cart %} hide {% endif %}"
+                    data-action="increment" data-productid={{product.id}} type="button">
+                        ADD TO CART
+                    </button>
+                    <div class="update-cart-btn-group {% if in_cart %} show {% endif %}">
+                        <div class="increment update-cart-cta-child" data-action="decrement" data-productid={{product.id}}>
+                            <svg viewBox="0 -1.6 24 24" id="remove"><path d="M19 13H5v-2h14v2z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+                        </div>
+                        <span class="product-count">{{ item_quantity  }}</span>
+                        <div class="decrement update-cart-cta-child" data-action="increment" data-productid={{product.id}}>
+                            <svg viewBox="0.3 -1.4 24 24" id="add"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+                        </div>
+                    </div>
+                    <button id="cart-cta-review" type="button">
+                        REVIEW PRODUCT
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="delivery-info">
+        <div class="header">
+            <p>Delivery Info</p>
+        </div>
+        <div class="location">
+            <p>Choose your location</p>
+
+            <form>
+                <div class="state-of-origin">
+                  <select
+                    onchange="toggleLGA(this);"
+                    name="state"
+                    id="state"
+                    class="form-control"
+
+                  >
+                  <option value="" selected="selected">- Select A State -</option>
+                    <option value="Abia">Abia</option>
+                    <option value="Adamawa">Adamawa</option>
+                    <option value="AkwaIbom">AkwaIbom</option>
+                    <option value="Anambra">Anambra</option>
+                    <option value="Bauchi">Bauchi</option>
+                    <option value="Bayelsa">Bayelsa</option>
+                    <option value="Benue">Benue</option>
+                    <option value="Borno">Borno</option>
+                    <option value="Cross River">Cross River</option>
+                    <option value="Delta">Delta</option>
+                    <option value="Ebonyi">Ebonyi</option>
+                    <option value="Edo">Edo</option>
+                    <option value="Ekiti">Ekiti</option>
+                    <option value="Enugu">Enugu</option>
+                    <option value="FCT">FCT</option>
+                    <option value="Gombe">Gombe</option>
+                    <option value="Imo">Imo</option>
+                    <option value="Jigawa">Jigawa</option>
+                    <option value="Kaduna">Kaduna</option>
+                    <option value="Kano">Kano</option>
+                    <option value="Katsina">Katsina</option>
+                    <option value="Kebbi">Kebbi</option>
+                    <option value="Kogi">Kogi</option>
+                    <option value="Kwara">Kwara</option>
+                    <option value="Lagos">Lagos</option>
+                    <option value="Nasarawa">Nasarawa</option>
+                    <option value="Niger">Niger</option>
+                    <option value="Ogun">Ogun</option>
+                    <option value="Ondo">Ondo</option>
+                    <option value="Osun">Osun</option>
+                    <option value="Oyo">Oyo</option>
+                    <option value="Plateau">Plateau</option>
+                    <option value="Rivers">Rivers</option>
+                    <option value="Sokoto">Sokoto</option>
+                    <option value="Taraba">Taraba</option>
+                    <option value="Yobe">Yobe</option>
+                    <option value="Zamfara">Zamafara</option>
+                  </select>
+                </div>
+  
+                <div class="form-group">
+                  <select
+                    name="lga"
+                    id="lga"
+                    class="form-control select-lga"
+                    required
+                  >
+                  </select>
+                </div>
+              </form>
+
+              <div class="delivery-options">
+                  <div class="option">
+                      <p class="header">Door Delivery</p>
+                      <p class="fee"> Shipping &#8358; 750</p>
+                      <p class="desc">
+                        Ready for delivery between 7 to 13 days from when you place the order with us.
+                      </p>
+                  </div>
+                  <div class="option">
+                      <p class="header">Pickup Station</p>
+                      <p class="fee">Shipping &#8358; 580</p>
+                      <p class="desc">Ready for pickup between 7 to 13 days from when you place the order with us.</p>
+                  </div>
+                  <div class="option">
+                      <p class="header">Return Policy</p>
+                      <p class="desc">Free return within 15 days of purchase for all eligible items.</p>
+                  </div>
+              </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="product-description">
+        <p class="header">Product Details</p>
+        <p class="desc">{{ product.description }}</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="reviews">
+        <div class="header">
+            <p>Customer Feedback</p>
+            <a href="{% url 'product_reviews' product.id %}"><span class="see-more">SEE ALL > </span></a>
+        </div>
+
+        <div class="body">
+            <div class="left-side">
+                <div class="ratings-count">PRODUCT RATINGS ({{product.product_rating.reviews_count}})</div>
+                <div class="rating-box">
+                    <div class="rate-value"><span class="numerator">{{product.product_rating.ratings|floatformat:1}}</span>/<span class="denominator">5</span></div>
+                    <div class="rate-stars">
+                        {% with stars_count=product.product_rating.ratings|floatformat:0 %}
+                        {% for i in "x"|rjust:stars_count %}
+                        <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                        {% endfor %}
+                        {% endwith %}
+                        {% with remainder_stars_count=product.product_rating.ratings|floatformat:0|subtract:5 %}
+                        {% if remainder_stars_count != 0 %}
+                            {% for j in "y"|rjust:remainder_stars_count %}
+                            <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="rate-count"><p>{{product.product_rating.reviews_count}} rating(s)</p></div>
+                </div>
+                <div class="mb-rating-box">
+                    <div class="mb-rate-value"><span class="numerator">{{product.product_rating.ratings|floatformat:1}}</span>/<span class="denominator">5</span></div>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="reviews-count">PRODUCT REVIEWS ({{product.product_reviews_count}})</div>
+                <div class="comments">
+                    {% for rating in product.product_reviews %}
+                    {% if rating.review %}
+                        <div class="comment">
+                            <div class="stars">
+                                {% for i in "x"|rjust:rating.rate %}
+                                <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                                {% endfor %}
+                                {% with remainder_stars_count=rating.rate|subtract:5 %}
+                                {% if remainder_stars_count != 0 %}
+                                    {% for j in "y"|rjust:remainder_stars_count %}
+                                    <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                                    {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            </div>
+                            <div class="text">
+                            <p>{{ rating.review }}</p>
+                            </div>
+                            <div class="posted-by">
+                                <span>{{rating.timestamp}} by <span class="name">{{rating.user.first_name}}</span></span>
+                                <span class="verified">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                    width="20" height="20"
+                                    viewBox="0 0 172 172"
+                                    style=" fill:#000000;"><defs><linearGradient x1="103.91667" y1="27.96075" x2="103.91667" y2="131.11417" gradientUnits="userSpaceOnUse" id="color-1_RVQEIf2wJu8M_gr1"><stop offset="0" stop-color="#6dbd28"></stop><stop offset="1" stop-color="#6dbd28">
+                                    </stop></linearGradient><linearGradient x1="68.08333" y1="32.2285" x2="68.08333" y2="147.576" gradientUnits="userSpaceOnUse" id="color-2_RVQEIf2wJu8M_gr2"><stop offset="0" stop-color="#6dbd28"></stop><stop offset="1" stop-color="#6dbd28"></stop></linearGradient></defs><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path>
+                                    <g><path d="M76.29992,135.8585l-39.41667,-39.41667c-1.40108,-1.40108 -1.40108,-3.66933 0,-5.06683l5.06683,-5.06683c1.40108,-1.40108 3.66933,-1.40108 5.06683,0l31.81642,31.81642l81.98308,-81.98308c1.40108,-1.40108 3.66933,-1.40108 5.06683,0l5.06683,5.06683c1.40108,1.40108 1.40108,3.66933 0,5.06683l-89.58333,89.58333c-1.3975,1.40108 -3.66933,1.40108 -5.06683,0z" fill="url(#color-1_RVQEIf2wJu8M_gr1)"></path><rect x="-11.75371" y="30.79458" transform="rotate(-45.001) scale(3.58333,3.58333)" width="3.999" height="5.999" fill="#6dbd28" opacity="0.05"></rect><rect x="-11.75371" y="31.29458" transform="rotate(-45.001) scale(3.58333,3.58333)" width="3.999" height="4.999" fill="#6dbd28" opacity="0.07"></rect>
+                                    <path d="M40.46658,135.8585l-39.41667,-39.41667c-1.40108,-1.40108 -1.40108,-3.66933 0,-5.06683l5.06683,-5.06683c1.40108,-1.40108 3.66933,-1.40108 5.06683,0l31.81642,31.81642l81.98308,-81.98308c1.40108,-1.40108 3.66933,-1.40108 5.06683,0l5.06683,5.06683c1.40108,1.40108 1.40108,3.66933 0,5.06683l-89.58333,89.58333c-1.3975,1.40108 -3.66933,1.40108 -5.06683,0z" fill="url(#color-2_RVQEIf2wJu8M_gr2)"></path></g></g></svg>
+                                    Verified Purchase
+                                </span>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+<script src="{% static 'lga.min.js' %}"></script>
+<script src="{% static 'add-to-cart-btn.js' %}"></script>
+
+<script>
+    let goBack = document.getElementById("go-back")
+    let reviewProduct = document.getElementById('cart-cta-review')
+    reviewProduct.addEventListener('click', ()=>{
+        window.location.href = "/reviews/{{product.id}}/create"
+    })
+    let heartIconCont = document.getElementById('heart-icon-cont')
+    heartIconCont.addEventListener('click', ()=>{
+        redirectToLogin()
+        let product_id = heartIconCont.getAttribute('data-productid')
+        fetch('/update_favourites/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken':csrftoken
+            },
+            body: JSON.stringify({
+            'product_id': product_id
+            }),
+        })
+        .then(response => response.json())
+        .then(resp => {
+            let heartIcon = document.getElementById('heart-icon-favourite')
+            if(resp['action']=='add'){
+                heartIcon.classList.add('fill')
+            }else{
+                heartIcon.classList.remove('fill')
+            }
+        })
+    
+    })
+</script>
+{% endblock js %}

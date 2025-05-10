@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load ecommerce %}
+{% load extra_tags %}
+{% block header %}
+    <link rel="stylesheet" href="{% static 'cart_page.css' %}">
+    <link rel="stylesheet" href="{% static 'loading.css' %}">
+{% endblock header %}
+
+{% block content %}
+
+    <div class="container">
+        <h2>Cart ( {{ cart.total_cart_quantity.total_sum }}  items )</h2>
+        <div class="cart-list-cont">
+            <div class="headers">
+                <span class="left">Item</span>
+                <!-- <div class="right"> -->
+                    <span class="qty">Quantity</span>
+                    <span class="unit-price">Unit Price</span>
+                    <span class="sub-total">Sub Total</span>
+                <!-- </div> -->
+            </div>
+            <div class="cart-items">
+                {% for cart_item in cart_items %}
+                <div class="cart-item">
+                    <div class="image-description-cont">
+                        <div class="image">
+                            <img src="{{ cart_item.product.image.url }}" alt="">
+                        </div>
+                        <div class="desc">
+                            <span class="seller">Seller: <span>{{ cart_item.product.seller.first_name }}</span></span>
+                            <a href="{% url 'product_detail' cart_item.product.id %}"><p>{{ cart_item.product.name }}</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="quantity"><span>{{ cart_item.quantity }}</span></div>
+                    <div class="unit-price">
+                        <span class="current-price">&#8358; {{ cart_item.product.price|discountprice:cart_item.product.discount|floatformat:1 }} </span>
+                        <span class="old-price">&#8358; {{ cart_item.product.price|floatformat:1 }}</span>
+                        <span class="savings">Savings: &#8358; {{ cart_item.product.price|discountpricesavings:cart_item.product.discount|floatformat:1 }}</span>
+                    </div>
+                    <div class="sub-total">
+                        <span>&#8358; {{ cart_item.total_price|floatformat:1 }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="cart-list-cont mb">
+            <div class="cart-items">
+                {% for cart_item in cart_items %}
+                <div class="cart-item mb">
+                    <div class="image-description-cont-mb">
+                        <div class="image">
+                            <img width="220" height="220" src="{{ cart_item.product.image.url }}" alt="">
+                        </div>
+                        <div class="desc-mb">
+                            <!-- <span class="seller">Seller: <span>{{ cart_item.product.seller.first_name }}</span></span> -->
+                            <a href="{% url 'product_detail' cart_item.product.id %}"><p>{{ cart_item.product.name }}</p>
+                            </a>
+                            <div class="unit-price-mb">
+                                <span class="current-price">&#8358; {{ cart_item.product.price|discountprice:cart_item.product.discount|floatformat:1 }} </span>
+                                <span class="old-price">&#8358; {{ cart_item.product.price|floatformat:1 }}</span>
+                                <!-- <span class="savings">Savings: &#8358; {{ cart_item.product.price|discountpricesavings:cart_item.product.discount|floatformat:1 }}</span> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="total-cont">
+                        <div class="quantity"><span>Quantity: {{ cart_item.quantity }}</span></div>
+                        <!-- <div class="sub-total">Total: 
+                            <span>&#8358; {{ cart_item.total_price|floatformat:1 }}</span>
+                        </div> -->
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="subtotal">
+            <span>Total: <span>&#8358; {{ cart.total_cart_price|floatformat:1 }}</span></span>
+        </div>
+    </div>
+
+    <div class="checkout-options">
+        <div class="btn-group">
+            <button type="button" id="cnt-shopping" class="cnt-shopping"> Continue Shopping </button>  
+            <button type="button" id="chk-out" class="chk-out"> Proceed to Checkout </button>
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block js %}
+
+<script>
+    document.getElementById('cnt-shopping').addEventListener('click', ()=>{
+        window.location.href = '/'
+    })
+    document.getElementById('chk-out').addEventListener('click', ()=>{
+        window.location.href = '/checkout/'
+    })
+</script>
+
+{% endblock js %}

@@ -1,0 +1,35 @@
+.box {
+  padding: 0 12px 8px 0;
+}
+
+.box .rangeSlider {
+  width: 100%;
+  margin: 0px auto;
+}
+
+.box .rangeSlider .circleRange {
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #f68b1e;
+  outline: none;
+  height: 3px;
+}
+
+.box .rangeSlider .circleRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #f68b1e;
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.box .rangeSlider .circleRange::-moz-slider-thumb {
+  -moz-appearance: none;
+  background: #e91e63;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}

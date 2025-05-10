@@ -1,0 +1,400 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: Roboto,-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+body h1 {
+  color: #282828;
+}
+
+.show {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.container {
+  min-width: 1200px;
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.nav-cont {
+  background-color: white;
+  -webkit-box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.12);
+}
+
+.navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  -webkit-box-shadow: unset;
+          box-shadow: unset;
+  height: 90px;
+  background-color: white;
+  max-width: 1150px;
+  min-width: 1150px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar .harmburger {
+  display: none;
+}
+
+.navbar .logo {
+  height: 2rem;
+  vertical-align: unset;
+}
+
+.navbar h1 {
+  display: inline-block;
+  font-size: 2.1rem;
+  font-weight: 300;
+  margin: .5rem 0 0 0;
+}
+
+.navbar .nav-items-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-flex: 42%;
+      -ms-flex: 42%;
+          flex: 42%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.navbar .searchbar.mobile {
+  display: none;
+}
+
+.navbar .searchbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 73%;
+      -ms-flex: 73%;
+          flex: 73%;
+}
+
+.navbar .searchbar input {
+  width: 100%;
+  height: 43px;
+  font-size: 17px;
+  padding-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: .5rem;
+  outline: none;
+  margin: 0 1rem 0 1.5rem;
+}
+
+.navbar .searchbar .search-btn {
+  height: 43px;
+  width: 120px;
+  background-color: #f68b1e;
+  color: white;
+  font-size: .875rem;
+  line-height: 1rem;
+  border-radius: .35rem;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.navbar .rightmost-nav-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-flex: 27%;
+      -ms-flex: 27%;
+          flex: 27%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar .rightmost-nav-items div {
+  position: relative;
+  margin: 0.5rem  1rem;
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.navbar .rightmost-nav-items div img {
+  height: 25px;
+  width: 25px;
+  margin-right: 5px;
+  position: relative;
+  top: 4px;
+  vertical-align: unset;
+}
+
+.navbar .rightmost-nav-items div #cart-count {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #f68b1e;
+  color: white;
+  font-size: 11px;
+  /* padding: .2rem; */
+  height: 16px;
+  line-height: 15px;
+  text-align: center;
+  width: 16px;
+  top: 4px;
+  border: 1.8px solid #fff;
+  right: 32px;
+}
+
+.navbar .rightmost-nav-items div a:hover {
+  color: #f68b1e;
+}
+
+.navbar .rightmost-nav-items div:hover {
+  color: #f68b1e;
+}
+
+.footer {
+  margin-top: 3rem;
+  text-align: center;
+  background-color: #302d2d;
+  height: 22rem;
+}
+
+.footer h3 {
+  color: white;
+  font-size: 25px;
+  line-height: 22rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: 950px !important;
+    min-width: 950px !important;
+  }
+  .navbar {
+    max-width: 950px;
+    min-width: 950px;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .container {
+    max-width: 800px !important;
+    min-width: 800px !important;
+  }
+  .navbar {
+    max-width: 800px !important;
+    min-width: 800px !important;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .navbar .rightmost-nav-items div {
+    max-width: -webkit-fit-content;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+  }
+  .navbar .rightmost-nav-items div #cart-count {
+    right: 0px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .container {
+    max-width: unset !important;
+    min-width: unset !important;
+  }
+  .index {
+    height: 40vh;
+  }
+  .navbar {
+    max-width: unset !important;
+    min-width: unset !important;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    height: auto;
+    padding: 11px;
+  }
+  .navbar .harmburger {
+    display: block;
+    height: 37px;
+    margin-right: 20px;
+  }
+  .navbar .harmburger img {
+    position: relative;
+    top: -6px;
+    height: 43px;
+  }
+  .navbar form {
+    width: 100%;
+  }
+  .navbar #logo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .navbar .logo {
+    height: 1.6rem;
+    vertical-align: unset;
+  }
+  .navbar h1 {
+    font-size: 1.7rem;
+  }
+  .navbar .searchbar {
+    display: none;
+  }
+  .navbar .searchbar.mobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 100%;
+        -ms-flex: 100%;
+            flex: 100%;
+    margin: 10px 1%;
+  }
+  .navbar .searchbar.mobile input {
+    border-radius: 2rem;
+    margin: 0;
+    height: 37px;
+    font-size: 14px;
+  }
+  .navbar .nav-items-container {
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    margin: 0 .2rem 0 auto;
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none;
+  }
+  .navbar .nav-items-container .rightmost-nav-items {
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .navbar .nav-items-container .rightmost-nav-items div {
+    margin: 0 .5rem .5rem;
+  }
+  .navbar .nav-items-container .rightmost-nav-items div span {
+    display: none;
+  }
+  .navbar .nav-items-container .rightmost-nav-items div span a {
+    display: none;
+  }
+  .navbar .nav-items-container .rightmost-nav-items div #cart-count {
+    display: block;
+  }
+  .navbar .nav-items-container .rightmost-nav-items div img {
+    height: 23px;
+    width: 23px;
+  }
+  .drawer .drawer__title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .drawer .drawer__title h2 {
+    display: inline-block;
+    font-size: 1.7rem;
+    font-weight: 300;
+  }
+  .drawer .drawer__title img {
+    height: 1.6rem;
+  }
+  .drawer .categories-left {
+    background-color: white;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    height: 29.5rem;
+    padding-right: 12px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    border-radius: .25rem;
+  }
+  .drawer .categories-left a {
+    font-size: 20px;
+    line-height: 2.4rem;
+    margin: .3rem 1rem;
+  }
+  .drawer .categories-left a img {
+    height: 1.2rem;
+    width: 1.2rem;
+    margin: 4px 6px 0 0;
+    position: relative;
+    top: 3px;
+  }
+  .drawer .categories-left a:hover {
+    color: #f68b1e;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .navbar h1 {
+    font-size: 1.3rem;
+  }
+  .navbar .logo {
+    height: 1.3rem;
+  }
+  .navbar .harmburger {
+    margin-right: 9px;
+  }
+  .navbar .harmburger img {
+    top: -3px;
+    height: 37px;
+  }
+  .navbar .nav-items-container .rightmost-nav-items div img {
+    height: 21px;
+    width: 21px;
+    top: 8px;
+  }
+}
+/*# sourceMappingURL=base.css.map */

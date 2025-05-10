@@ -1,0 +1,91 @@
+
+body{
+    background-color: white;
+}
+.auth{
+    display: flex;
+    margin-top: 4rem;
+    justify-content: space-between;
+
+    .btn{
+        color: white;
+        font-size: 1rem;
+    }
+
+    .login-btn, .create-acnt-btn{
+        background-color: #F58D3E;
+    }
+    .fb-btn{
+        background-color: #40588A;
+    }
+    svg{
+        float: left;
+    }
+    h3{
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #F58D3E;
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    .login-section{
+        flex: 45%;
+        padding: 0 5%;
+
+        .mb-text-center{
+            display: none;
+        }
+    }
+
+    .go-to-register-section{
+        flex: 45%;
+        padding: 0 5%;
+        border-left: 1px solid #ccc;
+
+        p{
+            text-align: center;
+            margin: 3rem 0 3.75rem 0;
+            padding: 0 10% 0 10%;
+        }
+    }
+}
+
+@media screen and (max-width: 480px){
+
+    .auth{
+        .fg-password{
+            font-size: 14px;
+        }
+        .login-section{
+            flex: 100%;
+            .btn{
+                font-size: .8rem;
+                font-weight: 600;
+                span{
+                    position: relative;
+                    top: 3px;
+                }
+            }
+            .mb-text-center{
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                p{
+                    margin-bottom: .4rem;
+                }
+                span{
+                    a{
+                        color: #f68b16;
+                    }   
+                    font-size: 16.5px;
+                    font-weight: 700;
+                }
+            }
+        }
+
+        .go-to-register-section{
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,365 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load ecommerce %}
+{% load extra_tags %}
+{% block header %}
+    <link rel="stylesheet" href="{% static 'category.css' %}">
+    <link rel="stylesheet" href="{% static 'range_slider.css' %}">
+    <link rel="stylesheet" href="{% static 'loading.css' %}">
+{% endblock header %}
+
+{% block content %}
+<div class="go-back">
+     <a href="/">Go Home</a>
+</div>
+<div class="filter">
+    <a href="#" data-drawer-trigger aria-controls="drawer-name-right" aria-expanded="false">FILTER</a>
+</div>
+<div class="container">
+        <div class="left-sidebar">
+            <p class="header sd-section">CATEGORY</p>
+            <div class="product-rating sd-section" id="rating">
+                <p>PRODUCT RATING</p>
+                <span class="reset" onclick="resetFilterBtn('rating')">RESET</span>
+                <div class="ratings">
+                        <div class="four-star n4 star change_qparam" data-paramName="rating" data-paramValue="4">
+                            <div class="circle filter_cta"></div>
+                            <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                            <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                            <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                            <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                            <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                            <span>& above</span>
+                        </div>
+                    <div class="three-star n3 star change_qparam" data-paramName="rating" data-paramValue="3">
+                        <div class="circle filter_cta"></div>
+                        <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                        <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                        <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                        <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                        <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                        <span>& above</span>
+                    </div>
+                    <div class="two-star n2 star change_qparam" data-paramName="rating" data-paramValue="2">
+                        <div class="circle filter_cta"></div>
+                        <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                        <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                        <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                        <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                        <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                        <span>& above</span>
+                    </div>
+                    <div class="one-star n1 star change_qparam" data-paramName="rating" data-paramValue="1">
+                        <div class="circle filter_cta"></div>
+                        <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                        <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                        <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                        <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                        <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                        <span>& above</span>
+                    </div>
+                </div>
+            </div>
+            <div class="shipping sd-section" id="express_shipping">
+                <p class="header">EXPRESS SHIPPING</p>
+                <span class="reset" onclick="resetFilterBtn('express_shipping')">RESET</span>
+                <div class="shipping-section change_qparam n1" data-paramName="express_shipping" data-paramValue="1">
+                    <div class="square filter_cta"></div>
+                    <span>JUMII <span>EXPRESS</span></span>
+                </div>
+            </a>
+            </div>
+            <div class="price sd-section" id="price">
+                <p class="header">PRICE (&#8358;)</p>
+                <span class="apply" onclick="applyPrice()">APPLY</span>
+                <div class="price-section">
+                    <div class="box">
+                        <div class="rangeSlider">
+                            <input  id="rangeSliderInp" type="range" class="circleRange" min="2000" max="1000000" value="1000000">
+                        </div>
+                    </div>
+                    <div class="result">
+                        <span class="min">99</span>
+                        <span class="max value">1,000,000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="shipped-from sd-section" id="shipped_from_nigeria">
+                <p class="header">SHIPPED FROM</p>
+                <span class="reset" onclick="resetFilterBtn('shipped_from_nigeria')">RESET</span>
+                <div class="shipped-from-content">
+                    <div class="abroad change_qparam n0" data-paramName="shipped_from_nigeria" data-paramValue="0">
+                        <div class="square filter_cta"></div>
+                        <span>Shipped from abroad</span>
+                    </div>
+                    <div class="nigeria change_qparam n1" data-paramName="shipped_from_nigeria" data-paramValue="1">
+                        <div class="square filter_cta"></div>
+                        <span>Shipped from nigeria</span>
+                    </div>
+                </div>
+            </div>
+            <div class="discount sd-section" id="discount_price">
+                <p class="header">DISCOUNT PERCENTAGE</p>
+                <span class="reset" onclick="resetFilterBtn('discount_price')">RESET</span>
+                <div class="discount-content">
+                    <div class="gt-50 range change_qparam n50" data-paramName="discount_price" data-paramValue="50"><div class="circle filter_cta"></div><span>50% or more</span></div>
+                    <div class="gt-40 range change_qparam n40" data-paramName="discount_price" data-paramValue="40"><div class="circle filter_cta"></div><span>40% or more</span></div>
+                    <div class="gt-30 range change_qparam n30" data-paramName="discount_price" data-paramValue="30"><div class="circle filter_cta"></div><span>30% or more</span></div>
+                    <div class="gt-20 range change_qparam n20" data-paramName="discount_price" data-paramValue="20"><div class="circle filter_cta"></div><span>20% or more</span></div>
+                    <div class="gt-10 range change_qparam n10" data-paramName="discount_price" data-paramValue="10"><div class="circle filter_cta"></div><span>10% or more</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            
+            <div class="result-count-container">
+                <p class="topic">{{ category }}</p>
+                <span>{{products.count}} product(s) found</span>
+            </div>
+            <div class="products">
+                {% for product in products %}
+                    <div class="product">
+                        <a href="{{ product.get_absolute_url }}">
+                        <div class="image">
+                            {% if product.discount != 0 %}
+                            <div class="discount"><span>-{{ product.discount|floatformat:1 }}%</span></div>
+                            {% endif %}
+                            <img src="{{product.image.url}}" alt="">
+                        </div>
+                        <p class="name">
+                            {{product.name}}
+                        </p>
+                        {% if product.discount == 0 %}
+                            <div class="price">
+                                &#8358; {{product.price|floatformat:2}}
+                            </div>
+                        {% else %}
+                            <div class="price">
+                                &#8358; {{product.price|discountprice:product.discount|floatformat:2}}
+                            </div>
+                            <div class="old-price">
+                                &#8358; {{product.price|floatformat:2}}
+                            </div>
+                        {% endif %}
+                        <div class="star">
+                            {% with rating_count=product.product_rating.ratings|floatformat:"0" %}
+                            {% for i in "x"|rjust:rating_count %}
+                            <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                            {% endfor %}
+                            {% with remainder_stars_count=rating_count|subtract:5 %}
+                            {% for j in "y"|rjust:remainder_stars_count %}
+                            <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                            {% endfor %}
+                            {% endwith %}
+                            {% endwith %}
+                            <span>({{product.product_rating.reviews_count}})</span>
+                        </div>
+                        <div class="express">
+                            <span>Jumii<span>Express</span></span>
+                        </div>
+                    </a>
+                        <div class="cta-container">
+                            <div class="lds-facebook"><div></div><div></div><div></div></div>
+                            <button class="update-cart-cta initial {% if product.id|isproductincart:in_cart_products_ids %} hide {% endif %}"
+                            data-action="increment" data-productid={{product.id}} type="button">
+                                ADD TO CART
+                            </button>
+                            <div class="update-cart-btn-group {% if product.id|isproductincart:in_cart_products_ids %} show {% endif %}">
+                                <div class="increment update-cart-cta-child" data-action="decrement" data-productid={{product.id}}>
+                                    <svg viewBox="0 -1.6 24 24" id="remove"><path d="M19 13H5v-2h14v2z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+                                </div>
+                                <span class="product-count">{{ product.id|product_quantity:in_cart_products_ids  }}</span>
+                                <div class="decrement update-cart-cta-child" data-action="increment" data-productid={{product.id}}>
+                                    <svg viewBox="0.3 -1.4 24 24" id="add"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <section class="drawer drawer--right" id="drawer-name-right" data-drawer-target>
+            <div class="drawer__overlay" data-drawer-close tabindex="-1"></div>
+            <div class="drawer__wrapper">
+              <div class="drawer__header">
+                <div class="drawer__title">
+                  <h2>FILTERS</h2>
+                </div>
+                <button class="drawer__close" data-drawer-close aria-label="Close Drawer"></button>
+              </div>
+              <div class="drawer__content">
+                <div class="left-sidebar">
+                    <p class="header sd-section">CATEGORY</p>
+                    <div class="product-rating sd-section" id="rating">
+                        <p>PRODUCT RATING</p>
+                        <span class="reset" onclick="resetFilterBtn('rating')">RESET</span>
+                        <div class="ratings">
+                                <div class="four-star n4 star change_qparam" data-paramName="rating" data-paramValue="4">
+                                    <div class="circle filter_cta"></div>
+                                    <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                                    <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                                    <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                                    <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                                    <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                                    <span>& above</span>
+                                </div>
+                            <div class="three-star n3 star change_qparam" data-paramName="rating" data-paramValue="3">
+                                <div class="circle filter_cta"></div>
+                                <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                                <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                                <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                                <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                                <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                                <span>& above</span>
+                            </div>
+                            <div class="two-star n2 star change_qparam" data-paramName="rating" data-paramValue="2">
+                                <div class="circle filter_cta"></div>
+                                <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                                <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                                <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                                <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                                <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                                <span>& above</span>
+                            </div>
+                            <div class="one-star n1 star change_qparam" data-paramName="rating" data-paramValue="1">
+                                <div class="circle filter_cta"></div>
+                                <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                                <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                                <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                                <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                                <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                                <span>& above</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shipping sd-section" id="express_shipping">
+                        <p class="header">EXPRESS SHIPPING</p>
+                        <span class="reset" onclick="resetFilterBtn('express_shipping')">RESET</span>
+                        <div class="shipping-section change_qparam n1" data-paramName="express_shipping" data-paramValue="1">
+                            <div class="square filter_cta"></div>
+                            <span>JUMII <span>EXPRESS</span></span>
+                        </div>
+                    </a>
+                    </div>
+                    <div class="price sd-section" id="price">
+                        <p class="header">PRICE (&#8358;)</p>
+                        <span class="apply" onclick="applyPrice()">APPLY</span>
+                        <div class="price-section">
+                            <div class="box">
+                                <div class="rangeSlider">
+                                    <input  id="rangeSliderInp" type="range" class="circleRange" min="2000" max="1000000" value="1000000">
+                                </div>
+                            </div>
+                            <div class="result">
+                                <span class="min">99</span>
+                                <span class="max value">1,000,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shipped-from sd-section" id="shipped_from_nigeria">
+                        <p class="header">SHIPPED FROM</p>
+                        <span class="reset" onclick="resetFilterBtn('shipped_from_nigeria')">RESET</span>
+                        <div class="shipped-from-content">
+                            <div class="abroad change_qparam n0" data-paramName="shipped_from_nigeria" data-paramValue="0">
+                                <div class="square filter_cta"></div>
+                                <span>Shipped from abroad</span>
+                            </div>
+                            <div class="nigeria change_qparam n1" data-paramName="shipped_from_nigeria" data-paramValue="1">
+                                <div class="square filter_cta"></div>
+                                <span>Shipped from nigeria</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="discount sd-section" id="discount_price">
+                        <p class="header">DISCOUNT PERCENTAGE</p>
+                        <span class="reset" onclick="resetFilterBtn('discount_price')">RESET</span>
+                        <div class="discount-content">
+                            <div class="gt-50 range change_qparam n50" data-paramName="discount_price" data-paramValue="50"><div class="circle filter_cta"></div><span>50% or more</span></div>
+                            <div class="gt-40 range change_qparam n40" data-paramName="discount_price" data-paramValue="40"><div class="circle filter_cta"></div><span>40% or more</span></div>
+                            <div class="gt-30 range change_qparam n30" data-paramName="discount_price" data-paramValue="30"><div class="circle filter_cta"></div><span>30% or more</span></div>
+                            <div class="gt-20 range change_qparam n20" data-paramName="discount_price" data-paramValue="20"><div class="circle filter_cta"></div><span>20% or more</span></div>
+                            <div class="gt-10 range change_qparam n10" data-paramName="discount_price" data-paramValue="10"><div class="circle filter_cta"></div><span>10% or more</span></div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </section>
+</div>
+
+{% endblock content %}
+
+{% block js %}
+
+<script>
+    if (window.innerWidth <= 520){
+        let parentContainer = document.getElementsByClassName('container')[0]
+        let firstSideBar = document.getElementsByClassName('left-sidebar')[0]
+        parentContainer.removeChild(firstSideBar)
+    }
+
+    const rangeSlider = document.getElementById("rangeSliderInp");
+    const value = document.querySelector(".value");
+    value.textContent = rangeSlider.value;
+
+    rangeSlider.oninput = function(){
+    	value.textContent = this.value;
+    }
+
+    let url = new URL(window.location.href)    
+    let searchParam = new URLSearchParams(url.search)
+
+    document.querySelectorAll('.change_qparam').forEach(elem => {
+
+        elem.addEventListener('click', () => {
+            let paramName = elem.getAttribute('data-paramname')
+            let paramValue = elem.getAttribute('data-paramvalue')
+            
+            searchParam.forEach((val, key) => {
+                if (key == paramName){
+                    searchParam.delete(paramName)
+                }else if(key != 'price'){
+                    document.getElementById(key).getElementsByClassName('reset')[0].classList.add('is_visible')
+                }
+            })
+                searchParam.append(paramName, paramValue)       
+                window.location.href = '?' + searchParam.toString()
+                elem.querySelector('.filter_cta').classList.add('active')
+        })
+    })
+
+    function toggleFilterButton(){
+        searchParam.forEach((val, key) => {
+            if(key != 'price'){
+                document.getElementById(key).getElementsByClassName('reset')[0].classList.add('is_visible')
+                let selector_str = '#' + key + ' .n' + val + ' .filter_cta'
+                console.log(selector_str, document.querySelectorAll(selector_str))
+                document.querySelector(selector_str).classList.add('active')
+            }else{
+                document.getElementById('rangeSliderInp').setAttribute('value', val)
+                document.querySelector('#price .max.value').textContent = val
+                console.log('price')
+            }
+        })
+    }
+    toggleFilterButton()
+
+    function resetFilterBtn(filter_name){
+        searchParam.delete(filter_name)
+        if(url.search.split('?').length > 1){
+            window.location.href = '?' + searchParam.toString()
+        }else{
+            window.location.href = window.location.pathname
+        }
+    }
+
+    function applyPrice(){
+        let price_val = document.querySelector('#price .max.value').textContent
+        searchParam.set('price', price_val)
+        window.location.href = '?' + searchParam.toString()
+    }
+    
+</script>
+<script src="{% static 'add-to-cart-btn.js' %}"></script>
+
+{% endblock js %}

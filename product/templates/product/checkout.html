@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load ecommerce %}
+{% load extra_tags %}
+{% block header %}
+    <link rel="stylesheet" href="{% static 'checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'loading.css' %}">
+{% endblock header %}
+
+{% block content %}
+<div class="container">
+    <div class="checkout">
+        <div class="header">
+            <p>CHECKOUT</p>
+        </div>
+        <div class="checkout-details">
+            <div class="address-details">
+                <div class="address-header">
+                    <p>1. ADDRESS DETAILS</p>
+                </div>
+                <form id="payment-form">
+                  <div class="address-content">
+                      <div class="name">
+                          <div class="form-group">
+                              <label for="first_name">First Name*</label>
+                              <input type="text" value="{{ request.user.first_name }}" required name="first_name" id="first_name">
+                          </div>
+                          <div class="form-group">
+                              <label for="last_name">Last Name*</label>
+                              <input type="text" value="{{ request.user.last_name }}" required name="last_name" id="last_name">
+                          </div>
+                      </div>
+                      <div class="form-group phone">
+                          <label for="telephone">Mobile Phone Number*</label>
+                          <input type="tel" required name="telephone" id="telephone">
+                      </div>
+                      <div class="form-group address">
+                          <label for="address">Address*</label>
+                          <textarea type="text" required placeholder="Street Name / Building / Apartment No. / Floor"
+                          name="address" id="address"></textarea>
+                      </div>
+                      <div class="state-of-origin form-group">
+                          <select
+                            onchange="toggleLGA(this);"
+                            name="state"
+                            id="state"
+                            class="form-control"
+                            required
+                          >
+                          <option value="" selected="selected">- Select A State -</option>
+                            <option value="Abia">Abia</option>
+                            <option value="Adamawa">Adamawa</option>
+                            <option value="AkwaIbom">AkwaIbom</option>
+                            <option value="Anambra">Anambra</option>
+                            <option value="Bauchi">Bauchi</option>
+                            <option value="Bayelsa">Bayelsa</option>
+                            <option value="Benue">Benue</option>
+                            <option value="Borno">Borno</option>
+                            <option value="Cross River">Cross River</option>
+                            <option value="Delta">Delta</option>
+                            <option value="Ebonyi">Ebonyi</option>
+                            <option value="Edo">Edo</option>
+                            <option value="Ekiti">Ekiti</option>
+                            <option value="Enugu">Enugu</option>
+                            <option value="FCT">FCT</option>
+                            <option value="Gombe">Gombe</option>
+                            <option value="Imo">Imo</option>
+                            <option value="Jigawa">Jigawa</option>
+                            <option value="Kaduna">Kaduna</option>
+                            <option value="Kano">Kano</option>
+                            <option value="Katsina">Katsina</option>
+                            <option value="Kebbi">Kebbi</option>
+                            <option value="Kogi">Kogi</option>
+                            <option value="Kwara">Kwara</option>
+                            <option value="Lagos">Lagos</option>
+                            <option value="Nasarawa">Nasarawa</option>
+                            <option value="Niger">Niger</option>
+                            <option value="Ogun">Ogun</option>
+                            <option value="Ondo">Ondo</option>
+                            <option value="Osun">Osun</option>
+                            <option value="Oyo">Oyo</option>
+                            <option value="Plateau">Plateau</option>
+                            <option value="Rivers">Rivers</option>
+                            <option value="Sokoto">Sokoto</option>
+                            <option value="Taraba">Taraba</option>
+                            <option value="Yobe">Yobe</option>
+                            <option value="Zamfara">Zamafara</option>
+                          </select>
+                        </div>
+          
+                        <div class="form-group">
+                          <select
+                            name="lga"
+                            id="lga"
+                            class="form-control select-lga"
+                            required
+                          >
+                          </select>
+                        </div>
+                  </div>
+              </form>
+            </div>
+            <div class="payment-options">
+              <button type="button" id="pay-now">CONFIRM ORDER</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="order-summary">
+        <div class="header">
+            <p>ORDER SUMMARY</p>
+        </div>
+        <div class="summary">
+            <div class="summary-header"><p>YOUR ORDER ({{ cart.total_cart_quantity.total_sum }} Items)</p></div>
+            <div class="content">
+                {% for cart_item in cart.items.all %}
+                <div class="item">
+                    <div class="image">
+                        <img src="{{ cart_item.product.image.url }}" alt="">
+                    </div>
+                    <div class="desc">
+                        <p class="name">{{ cart_item.product.name }}</p>
+                        <span class="price">₦ {{ cart_item.product.price|discountprice:cart_item.product.discount|floatformat:1 }}</span>
+                        <span class="qty">Qty: <span>{{ cart_item.quantity }}</span></span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="total">
+                <span>Total: </span>
+                <span>₦ {{ cart.total_cart_price|floatformat:1 }}</span>
+            </div>
+            <div class="return-to-cart">
+                <a href="{% url 'cart' %}">MODIFY CART</a>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock content %}
+
+
+
+
+{% block js %}
+<script src="{% static 'lga.min.js' %}"></script>
+<script src="https://checkout.flutterwave.com/v3.js"></script>
+
+  <script>
+    let cartPrice = "{{ cart.total_cart_price|floatformat:1 }}"
+    let key = "{{ key }}"
+    let phoneNumber = ''
+    // check if all form fields are filled
+    document.getElementById("pay-now").onclick = function() {
+      let allAreFilled = true;
+      document.getElementById("payment-form").querySelectorAll("[required]").forEach(function(i) {
+        if (!allAreFilled) return;
+        if (!i.value) allAreFilled = false;
+        if(i.type == 'tel') phoneNumber = i.value
+      })
+      if (!allAreFilled) {
+        alert('Fill all the fields');
+      }else{
+        makePayment()
+      }
+    };
+
+    function makePayment() {
+        
+      FlutterwaveCheckout({
+        public_key: key,
+        tx_ref: "h12li-tx-1fgAbbtyt",
+        amount: cartPrice,
+        currency: "NGN",
+        country: "NG",
+        payment_options: "card, mobilemoneyghana, ussd",
+        // set this if your are going to use the returned details, which is expected
+        // redirect_url: // specified redirect URL
+        //   "/",
+        customer: {
+          email: "{{ request.user.username }}",
+          phone_number: phoneNumber,
+          name: "{{ request.user.last_name }} {{ request.user.first_name }}",
+        },
+        callback: function (data) {
+          window.location.href = '/'
+          console.log(data);
+        },
+        onclose: function() {
+          // close modal
+        },
+        customizations: {
+          title: "My store",
+          description: "Payment for items in cart",
+          logo: "https://assets.piedpiper.com/logo.png",
+        },
+      });
+    }
+  </script>
+{% endblock js %}

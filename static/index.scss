@@ -1,0 +1,313 @@
+.index{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    height: 70vh;
+}
+
+.categories-left{
+    background-color: white;
+    display: flex;
+    height: 29.5rem;
+    padding-right: 12px;
+    flex-direction: column;
+    border-radius: .25rem;
+    a{
+        margin: .3rem 1rem;
+        line-height: 1.2rem;
+        color: black;
+        font-size: 12px;
+        font-weight: 270px;
+
+        img{
+            height: 1.2rem;
+            width: 1.2rem;
+            margin: 4px 6px 0 0;
+            position: relative;
+            top: 3px;
+        }
+
+        &:hover{
+            color: #f68b1e
+        }
+    }
+}
+
+.jumbo-product{
+    flex: 4;
+    width: 380px;
+    // height: 100%;
+    margin: 0 1rem;
+
+    box-shadow: 0 3px 3px #ccc;
+    img{
+        width: 100%;
+        height: 70vh;
+    }
+}
+
+.categories-right{
+    flex: 1;
+
+    .top{
+        background-color: white;
+        // padding: 4px;
+        border-radius: .7rem;
+        background-image: url(https://i2.wp.com/www.techhallmark.com/wp-content/uploads/2018/09/052015-square-advertise-here.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        height: 70%;
+        h2{
+            font-weight: 350;
+            letter-spacing: 1.7;
+            color: #f68b1e;
+        }
+        p{
+            color: #ccc;
+        }
+    }
+}
+
+// common styles
+.products{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 8px;
+
+    .product{
+        border-radius: .3rem;
+        // width: calc(100% / 4 - 8px);
+        width: 100%;
+        margin: 0 5px;
+        height: fit-content;
+        overflow: hidden;
+        cursor: pointer;
+        .image {
+            transition: .15s ease-out all;
+            position: relative;
+            overflow: hidden;
+            max-width: 15rem;
+            .discount{
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: .7rem .7rem 0 0;
+                z-index: 2;
+                width: 3rem;
+                height: 1.65rem;
+                border-radius: 3.5px;
+                background-color: #feefde;
+                text-align: center;
+
+                span{
+                    color: #f68b1e;
+                    line-height: 1.65rem;
+                }                
+            }
+            img{
+                z-index: 1;
+                width: 100%;
+                height: 12.5rem;
+            }
+        }
+        p.name{
+            font-size: 13.5px;
+            font-weight: 280;
+            line-height: 18px;
+            padding: .1rem .3rem;
+            text-overflow: ellipsis;
+            line-clamp: 1;
+            overflow: hidden;
+            display: block; 
+            max-width: 224px;
+            white-space: nowrap;
+        }
+        .price{
+            padding: .1rem .3rem;
+            font-size: 22px;
+        }
+
+        &:hover{
+            box-shadow: 0 0 12px 0 rgba(0,0,0,0.12);
+            img{
+                transform: scale(1.01);
+            }
+        }
+    }
+}
+
+.w-cover{
+    background-color: white;
+    margin-top: 3rem;
+    padding: 5px;
+}
+// end
+
+.top-sales{
+    border-radius: .3rem;
+    height: 19.7rem;
+    p.heading{
+        margin: 5px 0 5px 15px;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 30px;
+    }
+}
+
+.double-offer {
+    background-color: white;
+    border-radius: .3em;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 3rem;
+    padding: 5px;
+    
+    img{
+        height:  15rem;
+        border-radius: .3rem;
+        margin: 4px;
+        cursor: pointer;
+        transition: 0.13s ease-out all;
+        width: 42vw;
+    }
+
+    div{
+        display: flex;
+        overflow: hidden;
+        justify-content: center;
+        
+    }
+
+    .first-offer{
+        flex: 1 45%;
+        margin-right: .3rem;
+    }
+
+    .second-offer{
+        flex: 1 45%;
+    }
+
+    .first-offer img:hover, .second-offer img:hover{
+        box-shadow: 0 5px 5px #ccc;
+        transform: scale(1.01);
+    }
+}
+
+.ft.container{
+    margin-top: 3rem;
+}
+
+.top-items{
+    background-color: white;
+    padding: 5px;
+    height: 16.9rem;
+}
+
+.footwear-title-bar, .phone-title-bar{
+    background-color: #FFA845;
+    h3{
+        line-height: 3.2rem;
+        font-size: 1.4rem;
+        margin-left: 1.2rem;
+        font-weight: 350;
+    }
+}
+
+
+
+
+
+
+// Media Queries
+
+@media screen and (max-width:1200px){
+    .container, .navbar{
+        max-width: unset !important;
+        min-width: unset !important;
+    }
+}
+
+@media screen and (max-width:800px){
+    .categories-right{
+        display: none;
+    }
+}
+
+@media screen and (max-width:520px){
+    .index{
+        height: 40vh;
+    }
+    .categories-left{
+        display: none;
+        margin: 0;
+    }
+
+    .jumbo-product{
+        width: 100%;
+        margin: 0;
+        height: 40vh;
+
+        img{
+            height: 40vh;
+        }
+    }
+
+    .top-sales, .top-items{
+        height: unset;
+    }
+
+    .products{
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .product{
+            flex: 40% 0;
+            .image{
+                img{
+                    width: 7rem;
+                    height: 7rem;
+                }
+                .discount{
+                    width: 2.4rem;
+                    height: 1.35rem;
+                    margin: 0;
+                    top: 0.7rem;
+                    right: .7rem;
+                    span{
+                        line-height: 1.35rem;
+                        font-size: 12.5px;
+                    }
+                }
+            }
+            p.name{
+                font-size: 12px;
+                max-width: 142px;
+            }
+            .price{
+                font-size: 16px;
+            }
+        }
+    }
+    .double-offer{
+        img{
+            height: 8rem;
+            width: 46vw;
+        }
+    }
+
+    .footwear-title-bar, .phone-title-bar{
+        h3{
+            line-height: 2.7rem;
+            font-size: 1.15rem;
+            margin-left: .8rem;
+        }
+    }
+}
+
+@media screen and (max-width:320px){
+    .products .product p.name {
+        max-width: 122px;
+        padding: 0;
+    }
+
+}

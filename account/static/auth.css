@@ -1,0 +1,106 @@
+body {
+  background-color: white;
+}
+
+.auth {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 4rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.auth .btn {
+  color: white;
+  font-size: 1rem;
+}
+
+.auth .login-btn, .auth .create-acnt-btn {
+  background-color: #F58D3E;
+}
+
+.auth .fb-btn {
+  background-color: #40588A;
+}
+
+.auth svg {
+  float: left;
+}
+
+.auth h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #F58D3E;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.auth .login-section {
+  -webkit-box-flex: 45%;
+      -ms-flex: 45%;
+          flex: 45%;
+  padding: 0 5%;
+}
+
+.auth .login-section .mb-text-center {
+  display: none;
+}
+
+.auth .go-to-register-section {
+  -webkit-box-flex: 45%;
+      -ms-flex: 45%;
+          flex: 45%;
+  padding: 0 5%;
+  border-left: 1px solid #ccc;
+}
+
+.auth .go-to-register-section p {
+  text-align: center;
+  margin: 3rem 0 3.75rem 0;
+  padding: 0 10% 0 10%;
+}
+
+@media screen and (max-width: 480px) {
+  .auth .fg-password {
+    font-size: 14px;
+  }
+  .auth .login-section {
+    -webkit-box-flex: 100%;
+        -ms-flex: 100%;
+            flex: 100%;
+  }
+  .auth .login-section .btn {
+    font-size: .8rem;
+    font-weight: 600;
+  }
+  .auth .login-section .btn span {
+    position: relative;
+    top: 3px;
+  }
+  .auth .login-section .mb-text-center {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+  }
+  .auth .login-section .mb-text-center p {
+    margin-bottom: .4rem;
+  }
+  .auth .login-section .mb-text-center span {
+    font-size: 16.5px;
+    font-weight: 700;
+  }
+  .auth .login-section .mb-text-center span a {
+    color: #f68b16;
+  }
+  .auth .go-to-register-section {
+    display: none;
+  }
+}
+/*# sourceMappingURL=auth.css.map */

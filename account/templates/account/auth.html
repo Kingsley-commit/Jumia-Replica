@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block outercss %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+{% endblock outercss %}
+
+{% block header %}
+
+<link rel="stylesheet" href="{% static 'auth.css' %}">
+
+{% endblock header %}
+
+{% block content %}
+
+<div class="container">
+    <div class="auth">
+        <div class="login-section">
+            <h3 class="title">Login</h3>
+
+            <form action="." method="POST">
+                {% csrf_token %}
+                
+                <div class="form-outline mb-4">
+                  <input placeholder="Email address" type="text" id="form2Example1" name="username" class="form-control" />
+                </div>
+                <div class="form-outline mb-4">
+                  <input placeholder="Password" type="password" name="password" id="form2Example2" class="form-control" />
+                </div>
+              
+                <div class="fg-password row mb-4">
+                  <div class="col d-flex justify-content-center">
+                    <!-- Checkbox -->
+                  </div>
+                </div>
+              
+                <button type="submit" class="btn btn-block mb-4 login-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                    width="21" height="21"
+                    viewBox="0 0 172 172"
+                    style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" 
+                    stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" 
+                    stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" 
+                    font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path 
+                    d="M0,172v-172h172v172z" fill="#f58d3e"></path><g fill="#ffffff"><path 
+                        d="M0,24.08v9.5675c10.36031,9.01656 69.79438,60.83156 74.4975,64.93c4.8375,4.21938 9.66156,4.6225 11.5025,4.6225c1.84094,0 6.665,-0.40312 11.5025,-4.6225c4.87781,-4.24625 67.77875,-59.08469 74.4975,-64.93v-9.5675zM0,42.785v86.3225l52.03,-41.065c-16.86406,-14.67375 -40.91719,-35.5825 -52.03,-45.2575zM172,42.785c-10.49469,9.1375 -34.92406,30.36875 -52.03,45.2575l52.03,40.9575zM57.2975,92.665l-57.2975,45.15v10.105h172v-10.2125l-57.2975,-45.0425c-6.665,5.805 -11.46219,10.01094 -12.685,11.0725c-6.59781,5.73781 -13.41062,6.3425 -16.0175,6.3425c-2.60687,0 -9.41969,-0.59125 -16.0175,-6.3425c-1.20937,-1.04812 -6.00656,-5.25406 -12.685,-11.0725z"></path></g></g>
+                    </svg>
+                   <span>LOGIN</span>
+                </button>
+              
+                <div class="text-center">
+                  <a href="{% url 'social:begin' 'facebook' %}">
+                    <button type="button" class="btn btn-block mb-4 fb-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" 
+                          width="24" height="24"
+                          viewBox="0 0 172 172"
+                          style=" fill:#000000;"><g
+                          fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" 
+                          stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" 
+                          stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" 
+                          font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path 
+                          d="M0,172v-172h172v172z" fill="#40588a"></path><g fill="#ffffff"><path 
+                          d="M121.83333,21.5h-71.66667c-15.83117,0 -28.66667,12.8355 -28.66667,28.66667v71.66667c0,15.83117 12.8355,28.66667 28.66667,28.66667h40.28383v-49.88717h-16.7915v-19.52917h16.7915v-14.36917c0,-16.65533 10.18383,-25.7355 25.0475,-25.7355c5.0095,-0.01433 10.01183,0.24367 14.99267,0.7525v17.415h-10.234c-8.09833,0 -9.675,3.827 -9.675,9.47433v12.43417h19.35l-2.5155,19.52917h-16.94917v49.91583h11.36633c15.83117,0 28.66667,-12.8355 28.66667,-28.66667v-71.66667c0,-15.83117 -12.8355,-28.66667 -28.66667,-28.66667z"></path></g></g>
+                      </svg>
+                      <span>LOGIN WITH FACEBOOK</span>
+                    </button>
+                  </a>
+                </div>
+                <div class="mb-text-center">
+                  <p>New to jumii?</p><span><a href="{% url 'register' %}">CREATE AN ACCOUNT</a></span>
+                </div>
+              </form>
+        </div>
+        <div class="go-to-register-section">
+            <h3>Create your Jumii account</h3>
+
+            <p>Create your Jumia customer account in just a few clicks! You can register either using your e-mail address or through your Facebook account.</p>
+            
+            <!-- Submit button -->
+            <a href="{% url 'register' %}" class="btn btn-block mb-4 create-acnt-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                width="21" height="21"
+                viewBox="0 0 172 172"
+                style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" 
+                stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" 
+                stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" 
+                font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path 
+                d="M0,172v-172h172v172z" fill="#f58d3e"></path><g fill="#ffffff"><path 
+                    d="M0,24.08v9.5675c10.36031,9.01656 69.79438,60.83156 74.4975,64.93c4.8375,4.21938 9.66156,4.6225 11.5025,4.6225c1.84094,0 6.665,-0.40312 11.5025,-4.6225c4.87781,-4.24625 67.77875,-59.08469 74.4975,-64.93v-9.5675zM0,42.785v86.3225l52.03,-41.065c-16.86406,-14.67375 -40.91719,-35.5825 -52.03,-45.2575zM172,42.785c-10.49469,9.1375 -34.92406,30.36875 -52.03,45.2575l52.03,40.9575zM57.2975,92.665l-57.2975,45.15v10.105h172v-10.2125l-57.2975,-45.0425c-6.665,5.805 -11.46219,10.01094 -12.685,11.0725c-6.59781,5.73781 -13.41062,6.3425 -16.0175,6.3425c-2.60687,0 -9.41969,-0.59125 -16.0175,-6.3425c-1.20937,-1.04812 -6.00656,-5.25406 -12.685,-11.0725z"></path></g></g>
+                </svg>
+                CREATE AN ACCOUNT VIA EMAIL
+              </a>
+          
+            <!-- Register buttons -->
+            <div class="text-center">
+              <a href="{% url 'social:begin' 'facebook' %}">
+                <button type="button" class="btn btn-block mb-4 fb-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" 
+                      width="24" height="24"
+                      viewBox="0 0 172 172"
+                      style=" fill:#000000;"><g
+                      fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" 
+                      stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" 
+                      stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" 
+                      font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path 
+                      d="M0,172v-172h172v172z" fill="#40588a"></path><g fill="#ffffff"><path 
+                      d="M121.83333,21.5h-71.66667c-15.83117,0 -28.66667,12.8355 -28.66667,28.66667v71.66667c0,15.83117 12.8355,28.66667 28.66667,28.66667h40.28383v-49.88717h-16.7915v-19.52917h16.7915v-14.36917c0,-16.65533 10.18383,-25.7355 25.0475,-25.7355c5.0095,-0.01433 10.01183,0.24367 14.99267,0.7525v17.415h-10.234c-8.09833,0 -9.675,3.827 -9.675,9.47433v12.43417h19.35l-2.5155,19.52917h-16.94917v49.91583h11.36633c15.83117,0 28.66667,-12.8355 28.66667,-28.66667v-71.66667c0,-15.83117 -12.8355,-28.66667 -28.66667,-28.66667z"></path></g></g>
+                  </svg>
+                      <span>REGISTER WITH FACEBOOK</span>
+                </button>
+              </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block js %}
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+{% endblock js %}

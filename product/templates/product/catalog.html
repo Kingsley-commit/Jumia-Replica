@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load ecommerce %}
+{% load extra_tags %}
+{% block header %}
+    <link rel="stylesheet" href="{% static 'category.css' %}">
+    <link rel="stylesheet" href="{% static 'range_slider.css' %}">
+    <link rel="stylesheet" href="{% static 'loading.css' %}">
+{% endblock header %}
+
+{% block content %}
+<div class="go-back">
+     <a href="/">Go Home</a>
+</div>
+<div class="container">
+        <div class="main-content" style="flex:1"> 
+            <div class="result-count-container">
+                <p class="topic">Shop Online in Nigeria</p>
+                <span>{{products.count}} product(s) found</span>
+            </div>
+            <div class="products">
+                {% for product in products %}
+                    <div class="product">
+                        <a href="{{ product.get_absolute_url }}">
+                        <div class="image">
+                            {% if product.discount != 0 %}
+                            <div class="discount"><span>-{{ product.discount|floatformat:1 }}%</span></div>
+                            {% endif %}
+                            <img src="{{product.image.url}}" alt="">
+                        </div>
+                        <p class="name">
+                            {{product.name}}
+                        </p>
+                        {% if product.discount == 0 %}
+                            <div class="price">
+                                &#8358; {{product.price|floatformat:2}}
+                            </div>
+                        {% else %}
+                            <div class="price">
+                                &#8358; {{product.price|discountprice:product.discount|floatformat:2}}
+                            </div>
+                            <div class="old-price">
+                                &#8358; {{product.price|floatformat:2}}
+                            </div>
+                        {% endif %}
+                        <div class="star">
+                            {% with rating_count=product.product_rating.ratings|floatformat:"0" %}
+                            {% for i in "x"|rjust:rating_count %}
+                            <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                            {% endfor %}
+                            {% with remainder_stars_count=rating_count|subtract:5 %}
+                            {% for j in "y"|rjust:remainder_stars_count %}
+                            <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                            {% endfor %}
+                            {% endwith %}
+                            {% endwith %}
+                            <span>({{product.product_rating.reviews_count}})</span>
+                        </div>
+                        <div class="express">
+                            <span>Jumii<span>Express</span></span>
+                        </div>
+                    </a>
+                        <div class="cta-container">
+                            <div class="lds-facebook"><div></div><div></div><div></div></div>
+                            <button class="update-cart-cta initial {% if product.id|isproductincart:in_cart_products_ids %} hide {% endif %}"
+                            data-action="increment" data-productid={{product.id}} type="button">
+                                ADD TO CART
+                            </button>
+                            <div class="update-cart-btn-group {% if product.id|isproductincart:in_cart_products_ids %} show {% endif %}">
+                                <div class="increment update-cart-cta-child" data-action="decrement" data-productid={{product.id}}>
+                                    <svg viewBox="0 -1.6 24 24" id="remove"><path d="M19 13H5v-2h14v2z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+                                </div>
+                                <span class="product-count">{{ product.id|product_quantity:in_cart_products_ids  }}</span>
+                                <div class="decrement update-cart-cta-child" data-action="increment" data-productid={{product.id}}>
+                                    <svg viewBox="0.3 -1.4 24 24" id="add"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+</div>
+
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'add-to-cart-btn.js' %}"></script>
+{% endblock js %}

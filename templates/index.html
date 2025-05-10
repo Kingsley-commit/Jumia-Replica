@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <link rel="stylesheet" href="{% static 'splide.min.css' %}">
+{% endblock header %}
+
+{% block content %}
+<div class="container">
+    <div class="index">
+        <div class="categories-left">
+            <a href="{% url 'product_category' 'super-market' %}"><img src="https://img.icons8.com/ios/50/000000/apple.png"/>Supermarket</a>
+            <a href="{% url 'product_category' 'health-beauty' %}"><img src="https://img.icons8.com/material-outlined/24/000000/lipstick.png"/>Health & Beauty</a>
+            <a href="{% url 'product_category' 'home-office' %}"><img src="https://img.icons8.com/material-outlined/24/000000/home-office.png"/>Home & Office</a>
+            <a href="{% url 'product_category' 'phones-tablet' %}"><img src="https://img.icons8.com/material-outlined/24/000000/two-smartphones.png"/>Phones & Tablets</a>
+            <a href="{% url 'product_category' 'computing' %}"><img src="https://img.icons8.com/material-outlined/24/000000/laptop.png"/>Computing</a>
+            <a href="{% url 'product_category' 'electronics' %}"><img src="https://img.icons8.com/material-outlined/24/000000/electronics.png"/>Electronics</a>
+            <a href="{% url 'product_category' 'fashion' %}"><img src="https://img.icons8.com/material-outlined/24/000000/t-shirt.png"/>Fashion</a>
+            <a href="{% url 'product_category' 'foot-wear' %}"><img src="https://img.icons8.com/material-outlined/24/000000/chessboard.png"/>Foot Wear</a>
+            <a href="{% url 'product_category' 'baby-products' %}"><img src="https://img.icons8.com/material-outlined/24/000000/baby-bottle.png"/>Baby Products</a>
+            <a href="{% url 'product_category' 'sporting-goods' %}"><img src="https://img.icons8.com/material-outlined/24/000000/trainers.png"/>Sporting goods</a>
+            <a href="{% url 'product_category' 'automobile' %}"><img src="https://img.icons8.com/material-outlined/24/000000/suv.png"/>Automobile</a>
+        </div>
+        <div class="jumbo-product">
+            <div id="splide" class="splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li id="first-main" class="splide__slide"><img src="{% static 'images/first.jpeg' %}" alt=""></li>
+                        <li id="first-main" class="splide__slide"><img src="{% static 'images/ninth.jpg' %}" alt=""></li>
+                        <li id="first-main" class="splide__slide"><img src="{% static 'images/second.png' %}" alt=""></li>
+                        <li id="first-main" class="splide__slide"><img src="{% static 'images/eight.jpg' %}" alt=""></li>
+                        <li id="first-main" class="splide__slide"><img src="{% static 'images/fourth.jpg' %}" alt=""></li>
+                        <li id="first-main" class="splide__slide"><img src="{% static 'images/seventh.jpg' %}" alt=""></li>
+                        <li id="first-main" class="splide__slide"><img src="{% static 'images/sixth.jpg' %}" alt=""></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="categories-right">
+            <div class="top"><img src="{% static 'images/avert.png' %}" alt="advert"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="top-sales w-cover">
+        <p class="heading">Top Selling Items</p>
+        <div class="products">
+            {% for product in latest_sales %}
+            <a href="{% url 'product_detail' product.id %}">
+            <div class="product">
+                <div class="image">
+                    <img src="{{ product.image.url }}" alt="">
+                </div>
+                <a href="{% url 'product_detail' product.id %}">
+                    <p class="name">
+                        {{ product.name }}
+                    </p>
+                </a>
+                <div class="price">
+                    &#8358; {{ product.price }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="double-offer">
+        <a href="{% url 'product_category' 'health-beauty' %}">
+        <div class="first-offer">
+            <img src="{% static 'images/shirts-web.jpg' %}" alt="">
+        </div>
+        </a>
+        <a href="{% url 'product_category' 'phones-tablet' %}">
+        <div class="second-offer">
+            <img src="{% static 'images/smaho-web.jpg' %}" alt="">
+        </div>
+    </a>
+    </div>
+</div>
+
+<div class="ft container">
+    <div class="footwear-title-bar">
+        <h3>Top footwear trends</h3>
+    </div>
+    <div class="top-footwear top-items">
+        <div class="products">
+            {% for product in top_footwear_trends %}
+            <a href="{% url 'product_detail' product.id %}">
+            <div class="product">
+                <div class="image">
+                    <div class="discount"><span>-{{ product.discount|floatformat:1 }}%</span></div>
+                    <img src="{{ product.image.url }}" alt="">
+                </div>
+                <p class="name">
+                    {{ product.name }}
+                </p>
+                <div class="price">
+                    &#8358; {{ product.price }}
+                </div>
+            </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="ft container">
+    <div class="phone-title-bar title-bar">
+        <h3>Top Phones and Accessories</h3>
+    </div>
+    <div class="top-phones top-items">
+        <div class="products">
+            {% for product in top_phones %}
+            <a href="{% url 'product_detail' product.id %}">
+            <div class="product">
+                <div class="image">
+                    <div class="discount"><span>-{{ product.discount|floatformat:1 }}%</span></div>
+                    <img src="{{ product.image.url }}" alt="">
+                </div>
+                    <p class="name">
+                        {{ product.name }}
+                    </p>
+                <div class="price">
+                    &#8358; {{ product.price }}
+                </div>
+            </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'splide.min.js' %}"></script>
+<script>
+    
+let homeSliderImagesUrl =  location.origin.toString()+'/slider/images'
+fetch(homeSliderImagesUrl, {
+    method: 'GET'
+})
+.then(response => response.json())
+.then(resp => {
+    console.log(resp)
+    if(resp != null){
+        let splideList = document.getElementsByClassName('splide__list')[0]
+
+        for (elem in resp){
+            console.log(elem, resp[elem]['image'])
+            let newSplideListElement = document.createElement('li')
+            newSplideListElement.classList.add('splide__slide')
+            // newSplideListElement.classList.add('splide__slide--clone')
+            let newSplideImgElement = document.createElement('img')
+            newSplideImgElement.setAttribute('data-splide-lazy', resp[elem]['image'])
+            // newSplideImgElement.setAttribute('src', 'https://miro.medium.com/max/4096/1*z2uMzmh6FW7wT5nXB6Y7iQ.png')
+            newSplideListElement.appendChild(newSplideImgElement)
+            splideList.appendChild(newSplideListElement)
+            console.log(splideList)
+        }   
+    }
+    new Splide( '#splide', {
+	type    : 'loop',
+	perPage : 1,
+    width: '100%',
+    lazyLoad: 'nearby',
+	autoplay: true,
+} ).mount();
+})
+</script>
+{% endblock js %}

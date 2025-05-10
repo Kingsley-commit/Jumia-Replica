@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    <link rel="stylesheet" href="{% static 'create_review.css' %}">
+    <link rel="stylesheet" href="{% static 'star.css' %}">
+{% endblock header %}
+
+{% block content %}
+
+<div class="container">
+    <div class="rate-review-cont">
+        <form method="post">
+            {% csrf_token %}
+            <div class="review-header">
+                <img id="go-back" src="https://img.icons8.com/ios/64/000000/circled-left-2.png"/>
+                <h2>Rate & Review</h2>
+            </div>
+            <div class="rate-cont">
+                <div class="header">
+                    <p>SELECT THE STARS TO RATE THE PRODUCT</p>
+                </div>
+                <div class="rate-cont-body">
+                    <div class="product">
+                        <div class="image">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        </div>
+                        <div class="product-body">
+                            <p>{{ product.name }}</p>
+                            <div class="star">
+                                    <div class="rating">
+                                        <input type="radio" {% ifequal rating.rate 1 %} checked {% endifequal %} name="rate" id="star-1" value="1">
+                                        <input type="radio" {% ifequal rating.rate 2 %} checked {% endifequal %} name="rate" id="star-2" value="2">
+                                        <input type="radio" {% ifequal rating.rate 3 %} checked {% endifequal %} name="rate" id="star-3" value="3">
+                                        <input type="radio" {% ifequal rating.rate 4 %} checked {% endifequal %} name="rate" id="star-4" value="4">
+                                        <input type="radio" {% ifequal rating.rate 5 %} checked {% endifequal %} name="rate" id="star-5" value="5">
+                                        <label for="star-1">&#11088;</label>
+                                        <label for="star-2">&#11088;</label>
+                                        <label for="star-3">&#11088;</label>
+                                        <label for="star-4">&#11088;</label>
+                                        <label for="star-5">&#11088;</label>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-cont">
+                <div class="review-cont-header">
+                    <p>LEAVE A REVIEW</p>
+                </div>
+                <textarea name="review" id="review-content" cols="30" rows="10" placeholder="Your review...">{{rating.review}}</textarea>
+            <button type="submit">SUBMIT YOUR REVIEW</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block js %}
+
+<script>
+    const goBack = document.getElementById('go-back')
+    goBack.addEventListener('click', ()=>{
+        window.location.href = '/'
+    })
+</script>
+
+{% endblock js %}

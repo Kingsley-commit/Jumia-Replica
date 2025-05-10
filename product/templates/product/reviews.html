@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load ecommerce %}
+{% load extra_tags %}
+{% block header %}
+    <link rel="stylesheet" href="{% static 'product_detail.css' %}">
+    <style>
+        .reviews > .header{
+            justify-content: unset;
+        }
+
+        .reviews > .header > a{
+            margin-right: 1.1rem;
+        }
+
+    </style>
+{% endblock header %}
+
+{% block content %}
+
+<div class="container">
+    <div class="reviews">
+        <div class="header">
+            <a href="{% url 'product_detail' product.id %}">
+                <img src="https://img.icons8.com/material-sharp/24/000000/left.png"/>
+            </a>
+            <p>Customer Feedback</p>
+        </div>
+
+        <div class="body">
+            <div class="left-side">
+                <div class="ratings-count">PRODUCT RATINGS ({{product.product_rating.reviews_count}})</div>
+                <div class="rating-box">
+                    <div class="rate-value"><span class="numerator">{{product.product_rating.ratings|floatformat:1}}</span>/<span class="denominator">5</span></div>
+                    <div class="rate-stars">
+                        {% with stars_count=product.product_rating.ratings|floatformat:0 %}
+                        {% for i in "x"|rjust:stars_count %}
+                        <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                        {% endfor %}
+                        {% endwith %}
+                        {% with remainder_stars_count=product.product_rating.ratings|floatformat:0|subtract:5 %}
+                        {% if remainder_stars_count != 0 %}
+                            {% for j in "y"|rjust:remainder_stars_count %}
+                            <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="rate-count"><p>{{product.product_rating.reviews_count}} rating(s)</p></div>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="reviews-count">PRODUCT REVIEWS ({{product.product_reviews_count}})</div>
+                <div class="comments">
+                    {% for rating in product.ratings.all %}
+                    {% if rating.review %}
+                        <div class="comment">
+                            <div class="stars">
+                                {% for i in "x"|rjust:rating.rate %}
+                                <img src="https://img.icons8.com/fluent/48/000000/filled-star.png"/>
+                                {% endfor %}
+                                {% with remainder_stars_count=rating.rate|subtract:5 %}
+                                {% if remainder_stars_count != 0 %}
+                                    {% for j in "y"|rjust:remainder_stars_count %}
+                                    <img src="https://img.icons8.com/color/48/000000/star--v1.png"/>
+                                    {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            </div>
+                            <div class="text">
+                            <p>{{ rating.review }}</p>
+                            </div>
+                            <div class="posted-by">
+                                <span>{{rating.timestamp}} by <span class="name">{{rating.user.first_name}}</span></span>
+                                <span class="verified">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                    width="20" height="20"
+                                    viewBox="0 0 172 172"
+                                    style=" fill:#000000;"><defs><linearGradient x1="103.91667" y1="27.96075" x2="103.91667" y2="131.11417" gradientUnits="userSpaceOnUse" id="color-1_RVQEIf2wJu8M_gr1"><stop offset="0" stop-color="#6dbd28"></stop><stop offset="1" stop-color="#6dbd28">
+                                    </stop></linearGradient><linearGradient x1="68.08333" y1="32.2285" x2="68.08333" y2="147.576" gradientUnits="userSpaceOnUse" id="color-2_RVQEIf2wJu8M_gr2"><stop offset="0" stop-color="#6dbd28"></stop><stop offset="1" stop-color="#6dbd28"></stop></linearGradient></defs><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path>
+                                    <g><path d="M76.29992,135.8585l-39.41667,-39.41667c-1.40108,-1.40108 -1.40108,-3.66933 0,-5.06683l5.06683,-5.06683c1.40108,-1.40108 3.66933,-1.40108 5.06683,0l31.81642,31.81642l81.98308,-81.98308c1.40108,-1.40108 3.66933,-1.40108 5.06683,0l5.06683,5.06683c1.40108,1.40108 1.40108,3.66933 0,5.06683l-89.58333,89.58333c-1.3975,1.40108 -3.66933,1.40108 -5.06683,0z" fill="url(#color-1_RVQEIf2wJu8M_gr1)"></path><rect x="-11.75371" y="30.79458" transform="rotate(-45.001) scale(3.58333,3.58333)" width="3.999" height="5.999" fill="#6dbd28" opacity="0.05"></rect><rect x="-11.75371" y="31.29458" transform="rotate(-45.001) scale(3.58333,3.58333)" width="3.999" height="4.999" fill="#6dbd28" opacity="0.07"></rect>
+                                    <path d="M40.46658,135.8585l-39.41667,-39.41667c-1.40108,-1.40108 -1.40108,-3.66933 0,-5.06683l5.06683,-5.06683c1.40108,-1.40108 3.66933,-1.40108 5.06683,0l31.81642,31.81642l81.98308,-81.98308c1.40108,-1.40108 3.66933,-1.40108 5.06683,0l5.06683,5.06683c1.40108,1.40108 1.40108,3.66933 0,5.06683l-89.58333,89.58333c-1.3975,1.40108 -3.66933,1.40108 -5.06683,0z" fill="url(#color-2_RVQEIf2wJu8M_gr2)"></path></g></g></svg>
+                                    Verified Purchase
+                                </span>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock js %}

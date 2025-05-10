@@ -1,0 +1,64 @@
+body{
+    background-color: white;
+}
+.mb-text-center{
+    display: none;
+}
+.cont{
+    padding: 0 22%;
+
+    .row{
+        margin-bottom: 3rem;
+    }
+
+    h3{
+        margin: 2rem 0 3rem 0;
+        color: #F58D3E;
+    }
+
+    .sign-up-btn{
+        background-color: #F58D3E;
+        color: white;
+    }
+
+    .register-btn{
+        background-color: #40588A;
+        color: white;
+    }
+}
+
+@media screen and (max-width: 480px){
+
+    .cont{
+        padding: 0 5%;
+
+        h3{
+            text-align: center;
+        }
+        .row{
+            flex-direction: column;
+            margin-bottom: 0;
+        }
+        .col{
+            .form-outline{
+                margin-bottom: 1.5rem;
+            }
+        }
+        .mb-text-center{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            margin-bottom: 4rem;
+            p{
+                margin-bottom: .4rem;
+            }
+            span{
+                a{
+                    color: #f68b16;
+                }   
+                font-size: 16.5px;
+                font-weight: 700;
+            }
+        }
+    }
+}

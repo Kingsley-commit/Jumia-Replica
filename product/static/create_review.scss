@@ -1,0 +1,104 @@
+.container{
+    // padding: 0 5rem
+    // width: fit-content;
+    min-width: 1000px;
+    max-width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.rate-review-cont{
+    margin: 3rem 0;
+    background-color: white;
+
+    .review-header{
+        padding: 8px 16px;
+        border-bottom: 1px solid #ededed;
+        display: flex;
+        align-items: center;
+        h2{
+            font-weight: 500;
+            font-size: 1.25rem;
+        }
+        img{
+            width: 30px;
+            margin-right: 1rem;
+            cursor: pointer;
+        }
+    }
+    .rate-cont{
+            
+        .header{
+            padding: 16px 8px;
+            border-bottom: 1px solid #ededed;
+            p{
+                color: #282828;
+            }
+        }
+
+        .rate-cont-body{
+            padding: 12px 8px;
+            .product{
+                display: flex;
+                margin-top: .6rem;
+                .image{
+                    img{
+                        width: 104px;
+                        height: 104px;
+                    }
+                }
+
+                color: #282828;
+                p{
+                    font-size: .875rem;
+                }
+
+                .product-body{
+                    .star{
+                        margin-top: 1.5rem;
+                    }
+                }
+            }
+        }
+        
+    }
+
+    .review-cont{
+        padding: 12px 12px;
+        textarea{
+            margin-top: 12px;
+            border: 1px solid #c7c7cd;
+            padding: 5px;
+            border-radius: 4px;
+            resize: none;
+            font-size: 1rem;
+            width: 100%;
+            color:black;
+            outline: none;
+
+
+            &:focus{
+                border: 2px solid #f68b1e;
+
+            }
+        }
+
+        button{
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            color: white;
+            background-color: #f68b1e;
+            display: block;
+            outline: none;
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #f68b1e;
+            margin: 15px 0;
+            font-size: .875rem;
+            border-radius: .3rem;
+            &:hover{
+                background-color: #e4811c;
+                border: 1px solid #f68b1e;
+            }
+        }
+    }
+}

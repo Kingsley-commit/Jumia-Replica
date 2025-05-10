@@ -1,0 +1,342 @@
+.index {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 1rem;
+  height: 70vh;
+}
+
+.categories-left {
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 29.5rem;
+  padding-right: 12px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: .25rem;
+}
+
+.categories-left a {
+  margin: .3rem 1rem;
+  line-height: 1.2rem;
+  color: black;
+  font-size: 12px;
+  font-weight: 270px;
+}
+
+.categories-left a img {
+  height: 1.2rem;
+  width: 1.2rem;
+  margin: 4px 6px 0 0;
+  position: relative;
+  top: 3px;
+}
+
+.categories-left a:hover {
+  color: #f68b1e;
+}
+
+.jumbo-product {
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+  width: 380px;
+  margin: 0 1rem;
+  -webkit-box-shadow: 0 3px 3px #ccc;
+          box-shadow: 0 3px 3px #ccc;
+}
+
+.jumbo-product img {
+  width: 100%;
+  height: 70vh;
+}
+
+.categories-right {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.categories-right .top {
+  background-color: white;
+  border-radius: .7rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 70%;
+}
+
+.categories-right .top h2 {
+  font-weight: 350;
+  letter-spacing: 1.7;
+  color: #f68b1e;
+}
+
+.categories-right .top p {
+  color: #ccc;
+}
+
+.products {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-bottom: 8px;
+}
+
+.products .product {
+  border-radius: .3rem;
+  width: 100%;
+  margin: 0 5px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.products .product .image {
+  -webkit-transition: .15s ease-out all;
+  transition: .15s ease-out all;
+  position: relative;
+  overflow: hidden;
+  max-width: 15rem;
+}
+
+.products .product .image .discount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: .7rem .7rem 0 0;
+  z-index: 2;
+  width: 3rem;
+  height: 1.65rem;
+  border-radius: 3.5px;
+  background-color: #feefde;
+  text-align: center;
+}
+
+.products .product .image .discount span {
+  color: #f68b1e;
+  line-height: 1.65rem;
+}
+
+.products .product .image img {
+  z-index: 1;
+  width: 100%;
+  height: 12.5rem;
+}
+
+.products .product p.name {
+  font-size: 13.5px;
+  font-weight: 280;
+  line-height: 18px;
+  padding: .1rem .3rem;
+  text-overflow: ellipsis;
+  line-clamp: 1;
+  overflow: hidden;
+  display: block;
+  max-width: 224px;
+  white-space: nowrap;
+}
+
+.products .product .price {
+  padding: .1rem .3rem;
+  font-size: 22px;
+}
+
+.products .product:hover {
+  -webkit-box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
+
+.products .product:hover img {
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+}
+
+.w-cover {
+  background-color: white;
+  margin-top: 3rem;
+  padding: 5px;
+}
+
+.top-sales {
+  border-radius: .3rem;
+  height: 19.7rem;
+}
+
+.top-sales p.heading {
+  margin: 5px 0 5px 15px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.double-offer {
+  background-color: white;
+  border-radius: .3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-top: 3rem;
+  padding: 5px;
+}
+
+.double-offer img {
+  height: 15rem;
+  border-radius: .3rem;
+  margin: 4px;
+  cursor: pointer;
+  -webkit-transition: 0.13s ease-out all;
+  transition: 0.13s ease-out all;
+  width: 42vw;
+}
+
+.double-offer div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.double-offer .first-offer {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 45%;
+          flex: 1 45%;
+  margin-right: .3rem;
+}
+
+.double-offer .second-offer {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 45%;
+          flex: 1 45%;
+}
+
+.double-offer .first-offer img:hover, .double-offer .second-offer img:hover {
+  -webkit-box-shadow: 0 5px 5px #ccc;
+          box-shadow: 0 5px 5px #ccc;
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+}
+
+.ft.container {
+  margin-top: 3rem;
+}
+
+.top-items {
+  background-color: white;
+  padding: 5px;
+  height: 16.9rem;
+}
+
+.footwear-title-bar, .phone-title-bar {
+  background-color: #FFA845;
+}
+
+.footwear-title-bar h3, .phone-title-bar h3 {
+  line-height: 3.2rem;
+  font-size: 1.4rem;
+  margin-left: 1.2rem;
+  font-weight: 350;
+}
+
+@media screen and (max-width: 1200px) {
+  .container, .navbar {
+    max-width: unset !important;
+    min-width: unset !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .categories-right {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .index {
+    height: 40vh;
+  }
+  .categories-left {
+    display: none;
+    margin: 0;
+  }
+  .jumbo-product {
+    width: 100%;
+    margin: 0;
+    height: 40vh;
+  }
+  .jumbo-product img {
+    height: 40vh;
+  }
+  .top-sales, .top-items {
+    height: unset;
+  }
+  .products {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .products .product {
+    -webkit-box-flex: 40%;
+        -ms-flex: 40% 0;
+            flex: 40% 0;
+  }
+  .products .product .image img {
+    width: 7rem;
+    height: 7rem;
+  }
+  .products .product .image .discount {
+    width: 2.4rem;
+    height: 1.35rem;
+    margin: 0;
+    top: 0.7rem;
+    right: .7rem;
+  }
+  .products .product .image .discount span {
+    line-height: 1.35rem;
+    font-size: 12.5px;
+  }
+  .products .product p.name {
+    font-size: 12px;
+    max-width: 142px;
+  }
+  .products .product .price {
+    font-size: 16px;
+  }
+  .double-offer img {
+    height: 8rem;
+    width: 46vw;
+  }
+  .footwear-title-bar h3, .phone-title-bar h3 {
+    line-height: 2.7rem;
+    font-size: 1.15rem;
+    margin-left: .8rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .products .product p.name {
+    max-width: 122px;
+    padding: 0;
+  }
+}
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block outercss %}
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'sidebar.css' %}">
+    {% block header %}{% endblock header %}
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    <div class="nav-cont">
+        <nav class="navbar">
+            <a href="{% url 'index' %}">
+                <div id="logo">
+                    <a class="harmburger" href="#" data-drawer-trigger aria-controls="drawer-name-left" aria-expanded="false">
+                        <img src="https://img.icons8.com/pastel-glyph/64/000000/beefburger.png"/>
+                    </a>
+                    <a href="/">
+                        <h1>JUMII</h1>
+                    </a>
+                    <img class="logo" src="https://img.icons8.com/pastel-glyph/64/000000/fast-cart.png"/>
+                </div>
+            </a>
+            <div class="nav-items-container">
+                <div class="searchbar">
+                    <form action="/search" method="get">
+                        <input type="text" placeholder="Search products, brands and categories" name="q" id="nav-searchbar">
+                        <button class="search-btn" type="submit" >SEARCH</button>
+                    </form>
+                </div>
+                <div class="rightmost-nav-items">
+                    <a href="{% url 'account' %}">
+                        <div class="login">
+                            {% if request.user.is_authenticated%}
+                                <a href="{% url 'logout' %}">
+                                    <!-- <img src="https://img.icons8.com/android/24/000000/logout-rounded-left.png"/> -->
+                                    <img src="https://img.icons8.com/ios/50/000000/exit.png"/>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'account' %}">
+                                    <img src="https://img.icons8.com/ios/24/000000/user--v1.png"/>
+                                </a>
+                            {% endif %}
+                            <span>
+                            {% if request.user.is_authenticated%}
+                                    <a href="{% url 'logout' %}">Log Out</a>
+                            {% else %}
+                                Account
+                            {% endif %}
+                            </span>
+                        </div>
+                    </a>
+                   <a href="{% url 'cart' %}"><div class="cart"><img src="https://img.icons8.com/ios/24/000000/shopping-cart.png"/><span>Cart</span> {% if request.user.is_authenticated %}<span id="cart-count"></span>{% endif %}</div></a>
+                </div>
+            </div>
+            <div class="searchbar mobile">
+                <form action="/search" method="get">
+                    <input type="text" placeholder="Search products, brands and categories" name="q" id="nav-searchbar-mb">
+                    <button id="mb-submit" type="submit" style="display: none;"></button>
+                </form>
+            </div>
+        </nav>
+
+        
+    </div>
+  
+      <section class="drawer drawer--left" id="drawer-name-left" data-drawer-target>
+        <div class="drawer__overlay" data-drawer-close tabindex="-1"></div>
+        <div class="drawer__wrapper">
+          <div class="drawer__header">
+            <div class="drawer__title">
+              <h2>Jumii</h2>
+              <img class="logo" src="https://img.icons8.com/pastel-glyph/64/000000/fast-cart.png"/>
+            </div>
+            <button class="drawer__close" data-drawer-close aria-label="Close Drawer"></button>
+          </div>
+          <div class="drawer__content">
+            <div class="categories-left">
+              <a href="{% url 'product_category' 'super-market' %}"><img src="https://img.icons8.com/ios/50/000000/apple.png"/>Supermarket</a>
+              <a href="{% url 'product_category' 'health-beauty' %}"><img src="https://img.icons8.com/material-outlined/24/000000/lipstick.png"/>Health & Beauty</a>
+              <a href="{% url 'product_category' 'home-office' %}"><img src="https://img.icons8.com/material-outlined/24/000000/home-office.png"/>Home & Office</a>
+              <a href="{% url 'product_category' 'phones-tablet' %}"><img src="https://img.icons8.com/material-outlined/24/000000/two-smartphones.png"/>Phones & Tablets</a>
+              <a href="{% url 'product_category' 'computing' %}"><img src="https://img.icons8.com/material-outlined/24/000000/laptop.png"/>Computing</a>
+              <a href="{% url 'product_category' 'electronics' %}"><img src="https://img.icons8.com/material-outlined/24/000000/electronics.png"/>Electronics</a>
+              <a href="{% url 'product_category' 'fashion' %}"><img src="https://img.icons8.com/material-outlined/24/000000/t-shirt.png"/>Fashion</a>
+              <a href="{% url 'product_category' 'foot-wear' %}"><img src="https://img.icons8.com/material-outlined/24/000000/baby-bottle.png"/>Baby Products</a>
+              <a href="{% url 'product_category' 'baby-products' %}"><img src="https://img.icons8.com/material-outlined/24/000000/chessboard.png"/>Gaming</a>
+              <a href="{% url 'product_category' 'sporting-goods' %}"><img src="https://img.icons8.com/material-outlined/24/000000/trainers.png"/>Sporting goods</a>
+              <a href="{% url 'product_category' 'automobile' %}"><img src="https://img.icons8.com/material-outlined/24/000000/suv.png"/>Automobile</a>
+          </div>
+          </div>
+        </div>
+      </section>
+    
+    {% block content %}
+
+    {% endblock content %}
+
+    <div class="footer">
+        <h3>Jumii</h3>
+    </div>
+
+<script>
+    if (window.innerWidth <= 520){
+        let firstForm = document.getElementById('nav-searchbar')
+        firstForm.parentElement.removeChild(firstForm)
+        document.getElementById('nav-searchbar-mb')
+        .addEventListener('keyup', function(event) {
+            if (event.code === 'Enter')
+            {
+                event.preventDefault();
+                document.querySelector('.mb-submit').click();
+            }
+        });
+    }else{
+        let mobileForm = document.getElementById('nav-searchbar-mb')
+        mobileForm.parentElement.removeChild(mobileForm)
+    }
+function getToken(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+
+    let userCartCountUrl =  location.origin.toString()+'/cart_total/'
+    fetch(userCartCountUrl, {
+        method: 'GET'
+    })
+    .then(response => response.json())
+    .then(resp => {
+        if(resp['total'] != null){
+            document.getElementById('cart-count').textContent = resp['total']
+        }
+    })
+
+function redirectToLogin(){
+    let current_user = "{{ request.user }}"
+    console.log(current_user)
+    if(current_user=='AnonymousUser'){
+        window.location.href = '/account/'
+    }
+}
+
+const csrftoken = getToken('csrftoken');
+</script>
+<script src="{% static 'sidebar.js' %}"></script>
+
+{% block js %}{% endblock js %}
+</body>
+</html>

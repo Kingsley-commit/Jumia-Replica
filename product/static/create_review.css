@@ -1,0 +1,108 @@
+.container {
+  min-width: 1000px;
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.rate-review-cont {
+  margin: 3rem 0;
+  background-color: white;
+}
+
+.rate-review-cont .review-header {
+  padding: 8px 16px;
+  border-bottom: 1px solid #ededed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.rate-review-cont .review-header h2 {
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.rate-review-cont .review-header img {
+  width: 30px;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.rate-review-cont .rate-cont .header {
+  padding: 16px 8px;
+  border-bottom: 1px solid #ededed;
+}
+
+.rate-review-cont .rate-cont .header p {
+  color: #282828;
+}
+
+.rate-review-cont .rate-cont .rate-cont-body {
+  padding: 12px 8px;
+}
+
+.rate-review-cont .rate-cont .rate-cont-body .product {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: .6rem;
+  color: #282828;
+}
+
+.rate-review-cont .rate-cont .rate-cont-body .product .image img {
+  width: 104px;
+  height: 104px;
+}
+
+.rate-review-cont .rate-cont .rate-cont-body .product p {
+  font-size: .875rem;
+}
+
+.rate-review-cont .rate-cont .rate-cont-body .product .product-body .star {
+  margin-top: 1.5rem;
+}
+
+.rate-review-cont .review-cont {
+  padding: 12px 12px;
+}
+
+.rate-review-cont .review-cont textarea {
+  margin-top: 12px;
+  border: 1px solid #c7c7cd;
+  padding: 5px;
+  border-radius: 4px;
+  resize: none;
+  font-size: 1rem;
+  width: 100%;
+  color: black;
+  outline: none;
+}
+
+.rate-review-cont .review-cont textarea:focus {
+  border: 2px solid #f68b1e;
+}
+
+.rate-review-cont .review-cont button {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  color: white;
+  background-color: #f68b1e;
+  display: block;
+  outline: none;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #f68b1e;
+  margin: 15px 0;
+  font-size: .875rem;
+  border-radius: .3rem;
+}
+
+.rate-review-cont .review-cont button:hover {
+  background-color: #e4811c;
+  border: 1px solid #f68b1e;
+}
+/*# sourceMappingURL=create_review.css.map */

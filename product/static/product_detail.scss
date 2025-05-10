@@ -1,0 +1,506 @@
+.container{
+    display: flex;
+    margin-top: 3rem;
+}
+
+.go-back{
+    margin: 2rem 0 0 5.5rem;
+    text-decoration: underline;
+    text-decoration-color: #f68b1e;
+    cursor: pointer;
+    a{
+        color: #f68b1e;
+        font-weight: 600;
+    }
+}
+
+.product{
+    display: flex;
+    flex: 70%;
+    padding-top: 1.8rem;
+    background-color: white;
+    border-radius: .3rem;
+
+    .product-left-detail{
+        flex: 1;
+        .product-image{
+            img{
+                width: 21rem;
+                height: 21rem;
+            }
+        }
+    }
+
+    .product-right-detail{
+        flex:3;
+
+        .header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            h1{
+                font-size: 1.25rem;
+                font-weight: 400;
+                display: inline-flex;
+            }
+
+            .favourite{
+                margin-right: 2rem;
+
+                &:hover{
+                    cursor: pointer;
+                }
+            
+                .fill{
+                    fill: #f68b1e  !important;
+                }
+            }
+        }
+
+        .rating{
+            display: flex;
+            align-items: center;
+            img{
+                width: 1rem;
+                height: 1rem;
+                margin-right: .055rem;
+            }
+
+            span{
+                font-size: 15px;
+                margin-left: 10px;
+            }
+            margin-bottom: .7rem;
+        }
+
+        .bottom-section{
+            padding: .7rem 0;
+            border-top: 1px solid #ededed ;
+            border-bottom: 1px solid #ededed ;
+            .price{
+                
+                font-size: 1.45rem;
+                font-weight: 700;
+                color: #373530
+            }
+            .old-price{
+                font-size: 1rem;
+                text-decoration: line-through;
+                color: #75757a;
+            }
+
+            .cta-container{
+                margin: 1rem 0;
+                .update-cart-cta, #cart-cta-review{
+                    background-color: #f68b1e;
+                    color: white;
+                    width: 95%;
+                    height: 2.65rem;
+                    
+                    line-height: 2.65rem;
+                    border: none;
+                    outline: none;
+                    margin: .5rem auto;
+                    font-size: 15px;
+                    border-radius: .25rem;
+                    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+                    &:hover{
+                        background-color: rgb(228, 129, 28);
+                        cursor: pointer;
+                    }
+                }
+
+                .lds-facebook{
+                    display: none;
+                    height: 2.65rem;
+
+                }
+
+                .update-cart-btn-group{
+                    display: flex;
+                    align-items: center;
+                    margin: .5rem auto;
+                    display: none;
+                    span{
+                        font-size: 14px;
+                        margin: 0 1.55rem;
+                    }
+                    .increment, .decrement{
+                        background-color: #f68b1e;
+                        height: 2.35rem;
+                        width: 2.35rem;
+                        font-size: 2.2rem;
+                        color: #fff;
+                        border-radius: .3rem;
+                        padding: 5px;
+                        box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px;;
+                        
+                        svg{
+                            fill: white;
+                            position: relative;
+                            top: -6.5px;
+                        }
+
+                        &:hover{
+                            background-color: rgb(228, 129, 28);
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.delivery-info{
+    flex: 25%;
+    margin-left: .9rem;
+    display: flex;
+    flex-direction: column;
+
+    .header{
+        background-color: white;
+        padding: .5rem;
+        border-top-left-radius: .3rem;
+        border-top-right-radius: .3rem;
+        p{
+            color: #373530;
+            font-size: 16.5px;
+            text-transform: uppercase;
+        }
+    }
+
+    .location{
+        background-color: white;
+        margin-top: .08rem;
+        padding-bottom: 1rem;
+
+        p{
+            padding: .5rem 0 0 .65rem;
+        }
+
+        form{
+            select{
+                outline: 0;
+                display: block;
+                border: 1px solid #9e9d99;
+                background-color: transparent;
+                padding: .5rem;
+                font-size: 16px;
+                width: 90%;
+                margin:1rem auto 0 auto;
+                border-radius: .3rem;
+            }
+            .state-of-origin{
+                display: flex;
+                flex-direction: column;
+                label{
+                    font-size: 1rem;
+                    padding: 4px 8px 0 8px;
+                }
+            }
+        }
+
+        .delivery-options{
+            margin: 2rem .6rem 0 .6rem;
+            color: rgb(40, 40, 40);
+            .option{
+                p{
+                    line-height: 1;
+                }
+                .header{
+                    font-size: 17px
+                }
+
+                .fee{
+                    font-size: 14px;
+                }
+
+                .desc{
+                    font-size: 14px;
+                    padding-top: .3rem;
+                }
+            }
+        }
+    }
+}
+
+.product-description{
+    background-color: white;
+    margin-top: .2rem;
+    flex: 72% 0;
+    margin-bottom: 3rem;
+    padding: .5rem;
+    .header{
+        margin-top: .6rem;
+        font-size: 1.5rem;
+        padding: .5rem 0 0 .5rem;
+    }
+
+    .desc{
+        padding: .5rem 0 1.2rem .5rem;
+        color: rgb(40,40,40);
+    }
+}
+
+.reviews{
+    display: flex;
+    flex: 72% 0;
+    flex-direction: column;
+    margin-bottom: 2.5rem;
+    
+    .header{
+        flex: 60%;
+        display: flex;
+        justify-content: space-between;
+        padding: .7rem .8rem;
+        background-color: white;
+        border-top-right-radius: .3rem;
+        border-top-left-radius: .3rem;
+        align-items: center;
+
+        p{
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        .see-more{
+            font-size: .875rem;
+            color: #f68b1e;
+            position: relative;
+
+            &:hover{
+                cursor: pointer;
+                &::after{
+                    content: '';
+                    position: absolute;
+                    background-color: rgba(246,139,30,0.15);
+                    top: -8px;
+                    right: -8px;
+                    left: -8px;
+                    bottom: -8px;
+                }
+            }
+            
+        }
+    }
+
+    .body{
+        background-color: white;
+        margin-top: .15rem;
+        flex: 72% 0;
+        display: flex;
+        padding: 1rem;
+
+        .left-side{
+            flex: 30%;
+            padding-left: 12px;
+
+            .ratings-count{
+                text-transform: uppercase;
+                color: #373530;
+            font-size: .9rem;
+            }
+            .mb-rating-box{
+                display: none;
+            }
+            .rating-box{
+                background-color: #f5f5f5;
+                border-radius: .3rem;
+                padding: 18px 15.5px;
+                width: fit-content;
+                display: flex;
+                justify-content: center;
+                margin-top: 1rem;
+                flex-direction: column;
+
+                .rate-value{
+                    color: #f6b01e;
+                    font-size: 1.8125rem;
+                    display: flex;
+                    justify-content: center;
+                    .numerator{
+                        font-weight: 700;
+                    }
+                }
+
+                .rate-stars{
+                    margin-top: .8rem;
+                    display: flex;
+                    justify-content: center;
+                    img{
+                        height: 1.25rem;
+                        width: 1.25rem;
+                        margin-right: .19rem;
+                    }
+                }
+                .rate-count{
+                    margin-top: 1rem;
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .right-side{
+            flex: 70%;
+
+            .reviews-count{
+                text-transform: uppercase;
+                color: #373530;
+                font-size: .9rem;
+            }
+            .comments{
+                margin-top: 1rem;
+                .comment{
+                    margin-bottom: 1.4rem;
+                    .stars{
+                        img{
+                            height: 1.4rem;
+                            width: 1.4rem;
+                            margin-right: .1rem;
+                        }
+                    }
+                    .text{
+                        margin-top: .9rem;
+                    }
+
+                    .posted-by{
+                        margin-top: .9rem;
+                        font-size: .875rem;
+                        color: #75757a;
+                        
+
+                        .name{
+                            text-transform: uppercase;
+                        }
+
+                        .verified{
+                            display: flex;
+                            float: right;
+                            margin-right: 1rem;
+                            color: #6dbd28;
+                            position: relative;
+                            svg{
+                                margin-right: 5px;
+                                position: absolute;
+                                left: -24px;
+                                top: -3px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 520px){
+
+    .go-back{
+        margin: 2rem 0 0 1rem;
+    }
+    .container{
+        flex-direction: column;
+    }
+    .product{
+        flex-direction: column;
+        .product-left-detail{
+            .product-image{
+                width: fit-content;
+                margin: auto;
+                img{
+                    width: 13rem;
+                height: 13rem;
+                }
+            }
+        }
+
+        .product-right-detail{
+            padding-left: 12px;
+            .header{
+                h1{
+                    font-size: 1.1rem;
+                }
+            }
+            .bottom-section{
+
+                .price{
+                    font-size: 1.15rem;
+                }
+            }
+        }
+    }
+
+    .product-description{
+        margin-bottom: 0;
+    }
+
+    .reviews{
+        .body{
+            flex-direction: column;
+            .left-side{
+                display: flex;
+                align-items: center;
+                .rating-box{
+                    display: none;
+                }
+                .mb-rating-box{
+                    display: flex;
+                    margin-left: 10px;
+                    .mb-rate-value{
+                        padding: 2px 2.5px;
+                        border: 1px solid #f6b01e;
+                        color: #f68b1e;
+                        .numerator{
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+            .right-side{
+                .reviews-count{
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 385px){
+    .reviews .body .right-side .comments .comment .posted-by {
+        font-size: 0.7rem;
+    }
+}
+
+
+@media screen and (max-width: 320px){
+    .product-description{
+        .header{
+            font-size: 1.15rem;
+        }
+    }
+    .reviews 
+    {
+        .header{
+            p{
+                font-size: 1.1rem;
+            }
+        }
+
+        .body {
+            .left-side{
+                padding: 0;
+            }
+            .right-side .comments .comment {
+                .text{
+                    font-size: 0.785rem;
+                }
+                .posted-by {
+                    font-size: 0.7rem;
+                }
+            }
+        }
+    }
+}
