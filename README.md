@@ -12,9 +12,6 @@ Expiry: 09/32
 Pin: 3310
 OTP: 12345
 
-# Live Url
-https://jumii.herokuapp.com
-
 ### Preview Images
 
 <p float="middle">
